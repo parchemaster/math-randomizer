@@ -77,35 +77,30 @@ function userExist($pdo, $email)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errmsg = "";
 
-    // Validacia mena
     if (checkEmpty($_POST['firstname']) === true) {
-        $errmsg .= "<br>Enter name.<br>";
+        $errmsg .= "<span data-i18n='name_error_empty'></span>";
     } elseif (checkName($_POST['firstname']) === false) {
-        $errmsg .= "<br>The name's field can only contain uppercase letters and lowercase letters<br>";
+        $errmsg .= "<span data-i18n='name_error_format'></span>";
     }
 
-    // Validacia priezviska
     if (checkEmpty($_POST['lastname']) === true) {
-        $errmsg .= "<br>Enter last name.</br>";
+        $errmsg .= "<span data-i18n='last_name_error_empty'></span>";
     } elseif (checkName($_POST['lastname']) === false) {
-        $errmsg .= "<br>The last name's field can only contain uppercase letters and lowercase letters<br>";
+        $errmsg .= "<span data-i18n='last_name_error_format'></span>";
     }
 
-    // Validacia mailu
     if (checkEmail($_POST['email']) === false) {
-        $errmsg .= "Incorrect email format.";
+        $errmsg .= "<span data-i18n='email_error_invalid'></span>";
     }
 
-    // Kontrola pouzivatela
     if (userExist($pdo, $_POST['email']) === true) {
-        $errmsg .= "<br>A user with this email already exists.<br>";
+        $errmsg .= "<span data-i18n='email_error_duplicate'></span>";
     }
 
-    // Validacia hesla
     if (checkEmpty($_POST['password']) === true) {
-        $errmsg .= "<br>Enter password.</br>";
+        $errmsg .= "<span data-i18n='password_error_empty'></span>";
     } elseif (checkLength($_POST['password'], 8, 256) === false) {
-        $errmsg .= "<br>The password must have a minimum of 8 characters.<br>";
+        $errmsg .= "<span data-i18n='password_error_short'></span>";
     }
 
     if (empty($errmsg)) {
@@ -113,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST['email'];
         $hashed_password = password_hash($_POST['password'], PASSWORD_ARGON2ID);
 
-        if ($_POST['role'] == "student"){
+        if ($_POST['role'] == "student") {
             $teacher_id = $_POST['teacher'];
 
             $sql = "INSERT INTO students (full_name, email, password, teacher_id) VALUES (:fullname, :email, :password, :teacher_id)";
@@ -125,11 +120,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bindParam(":teacher_id", $teacher_id, PDO::PARAM_STR);
 
             if ($stmt->execute()) {
-                $errmsg .= "<br>Registration was successful!<br>";
+                $errmsg .= "<span data-i18n='registration_success'></span>";
             } else {
-                $errmsg .= "<br>Something get wrong.<br>";
+                $errmsg .= "<span data-i18n='unknown_error'></span>";
             }
-        } else if ($_POST['role'] == "teacher"){
+        } else if ($_POST['role'] == "teacher") {
             $sql = "INSERT INTO teachers (full_name, email, password) VALUES (:fullname, :email, :password)";
             $stmt = $pdo->prepare($sql);
 
@@ -138,9 +133,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bindParam(":password", $hashed_password, PDO::PARAM_STR);
 
             if ($stmt->execute()) {
-                $errmsg .= "<br>Registration was successful!<br>";
+                $errmsg .= "<span data-i18n='registration_success'></span>";
             } else {
-                $errmsg .= "<br>Something get wrong.<br>";
+                $errmsg .= "<span data-i18n='unknown_error'></span>";
             }
         }
 
@@ -155,14 +150,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <title>Register</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next@21.6.10/i18next.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@1.3.2/i18nextHttpBackend.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-i18next@1.2.1/jquery-i18next.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@6.1.3/i18nextBrowserLanguageDetector.min.js"></script>
+
+    <script src="../lang/i18n.js"></script>
 </head>
 <body>
+<select name="language" id="languageSwitcher"></select>
 <div class="d-flex justify-content-center">
     <div class="mx-auto">
-        <h1>Sign up</h1>
+        <h1 data-i18n='signup_heading'></h1>
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
             <br>
-            <label for="role">Select your role:</label>
+            <label for="role"><span data-i18n='select_role'></span>:</label>
             <select id="role" name="role" class="form-control" onchange="showTeacherSelect()" required>
                 <option value="student" selected>Student</option>
                 <option value="teacher">Teacher</option>
@@ -170,7 +174,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <br>
             <div id="teacher-div">
-                <label for="teacher">Select your teacher:</label>
+                <label for="teacher"><span data-i18n='select_teacher_label'></span>:</label>
                 <select id="teacher" name="teacher" class="form-control" required>
                     <?php
                     $sql = "SELECT * FROM teachers";
@@ -187,23 +191,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <br>
             <label for="firstname">
-                Name:
-                <input type="text" class="form-control" name="firstname" value="" id="firstname" placeholder="Name"
+                <span data-i18n='name_label'></span>:
+                <input type="text" class="form-control" name="firstname" value="" id="firstname"
                        maxlength="63" required>
             </label>
 
             <br>
 
             <label for="lastname">
-                Last name:
-                <input type="text" class="form-control" name="lastname" value="" id="lastname" placeholder="Last name"
+                <span data-i18n='last_name_label'></span>:
+                <input type="text" class="form-control" name="lastname" value="" id="lastname"
                        maxlength="64" required>
             </label>
 
             <br>
 
             <label for="email">
-                E-mail:
+                <span data-i18n='email_label'></span>:
                 <input type="email" class="form-control" name="email" value="" id="email" placeholder="user@mail.com"
                        maxlength="128" required>
             </label>
@@ -211,7 +215,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <br>
 
             <label for="password">
-                Password:
+                <span data-i18n='password_label'></span>:
                 <input type="password" class="form-control" name="password" value="" id="password" maxlength="256"
                        required>
             </label>
@@ -219,14 +223,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <br>
             <?php
             if (!empty($errmsg)) {
-                // Tu vypis chybne vyplnene polia formulara.
-                echo $errmsg . "<br>";
+                echo "<br>" . $errmsg . "<br>";
             }
             ?>
-            <button type="submit" class="btn btn-primary">Sign up</button>
+            <button type="submit" class="btn btn-primary"><span data-i18n='signup_button'></span></button>
         </form>
         <br>
-        <p>Already have an account? <a href="login.php">Sign in.</a></p>
+        <p><a href="login.php"><span data-i18n='have_account_text'></span></a></p>
     </div>
 </div>
 </body>
