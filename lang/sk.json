@@ -1,0 +1,31 @@
+{
+  "signin_heading": "Prihlásiť sa",
+  "signup_heading": "Registrovať sa",
+
+  "select_role": "Vyberte svoju rolu",
+  "select_teacher_label": "Vyberte svojho učiteľa",
+  "name_label": "Meno",
+  "last_name_label": "Priezvisko",
+  "email_label": "E-mail",
+  "password_label": "Heslo",
+
+  "login_button": "Prihlásiť sa",
+  "signup_button": "Registrovať sa",
+
+  "no_account_text": "Nemáte účet? Zaregistrujte sa tu.",
+  "have_account_text": "Už máte účet? Prihláste sa.",
+
+  "email_error_empty": "Prosím, zadajte e-mail.",
+  "email_error_invalid": "Nesprávny formát e-mailu.",
+  "email_error_duplicate": "Používateľ s týmto e-mailom už existuje.",
+  "password_error_empty": "Prosím, zadajte heslo.",
+  "password_error_short": "Heslo musí mať minimálne 8 znakov.",
+  "login_error": "Nesprávny e-mail alebo heslo.",
+  "name_error_empty": "Prosím, zadajte svoje meno.",
+  "name_error_format": "Pole s menom môže obsahovať len veľké a malé písmená.",
+  "last_name_error_empty": "Prosím, zadajte svoje priezvisko.",
+  "last_name_error_format": "Pole s priezviskom môže obsahovať len veľké a malé písmená.",
+  "registration_success": "Registrácia bola úspešná!",
+
+  "unknown_error": "Niečo sa pokazilo."
+}
