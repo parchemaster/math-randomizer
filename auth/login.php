@@ -6,9 +6,14 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
-if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("Location: ../restricted.php");
-    exit;
+if (isset($_SESSION["loggedin"]) && isset($_SESSION["user_type"]) && $_SESSION["loggedin"] === true) {
+    if ($_SESSION["user_type"] == "student") {
+        header("Location: ../student/student_index.php");
+        exit;
+    } else if ($_SESSION["user_type"] == "teacher") {
+        header("Location: ../teacher/teacher_index.php");
+        exit;
+    }
 }
 
 require_once "../config.php";
@@ -44,17 +49,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errmsg = "";
 
     if (checkEmpty($_POST['email']) === true) {
-        $errmsg .= "<span data-i18n='email_error_empty'></span>>";
+        $errmsg .= "<span data-i18n='email_error_empty'></span><br>";
     }
     if (checkEmail($_POST['email']) === false) {
-        $errmsg .= "<span data-i18n='email_error_invalid'></span>>";
+        $errmsg .= "<span data-i18n='email_error_invalid'></span><br>";
     }
 
 
     if (checkEmpty($_POST['password']) === true) {
-        $errmsg .= "<span data-i18n='password_error_empty'></span>";
+        $errmsg .= "<span data-i18n='password_error_empty'></span><br>";
     } elseif (checkLength($_POST['password'], 8, 256) === false) {
-        $errmsg .= "<span data-i18n='password_error_short'></span>>";
+        $errmsg .= "<span data-i18n='password_error_short'></span><br>";
     }
 
     if (empty($errmsg)) {
@@ -72,31 +77,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $hashed_password = $row["password"];
                 if (password_verify($_POST['password'], $hashed_password)) {
                     $_SESSION["loggedin"] = true;
+                    $_SESSION["user_type"] = "teacher";
                     $_SESSION["email"] = $row['email'];
-                    $_SESSION["fullname"] = $row['fullname'];
-
-                    header("Location: ../restricted.php");
+                    $_SESSION["fullname"] = $row['full_name'];
+                    header("Location: ../teacher/teacher_index.php");
                 } else {
                     $errmsg .= "<span data-i18n='login_error'></span>";
                 }
             } else if ($stmt_s->rowCount() == 1) {
                 $row = $stmt_s->fetch();
+
                 $hashed_password = $row["password"];
                 if (password_verify($_POST['password'], $hashed_password)) {
                     $_SESSION["loggedin"] = true;
+                    $_SESSION["user_type"] = "student";
                     $_SESSION["email"] = $row['email'];
-                    $_SESSION["fullname"] = $row['fullname'];
+                    $_SESSION["fullname"] = $row['full_name'];
                     $_SESSION["teacher_id"] = $row['teacher_id'];
 
-                    header("Location: ../restricted.php");
+                    header("Location: ../student/student_index.php");
                 } else {
-                    $errmsg .= "<span data-i18n='login_error'></span>";
+                    $errmsg .= "<span data-i18n='login_error'></span><br>";
                 }
             } else {
-                $errmsg .= "<span data-i18n='login_error'></span>";
+                $errmsg .= "<span data-i18n='login_error'></span><br>";
             }
         } else {
-            $errmsg .= "<span data-i18n='unknown_error'></span>";
+            $errmsg .= "<span data-i18n='unknown_error'></span><br>";
         }
 
         unset($stmt);
@@ -136,13 +143,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="password" class="form-control" name="password" value="" id="password" required>
             </label>
             <br>
-            <button type="submit" class="btn btn-primary"><span data-i18n="login_button"></span></button>
-            <br>
             <?php
             if (!empty($errmsg)) {
-                echo "<br>" . $errmsg .  "<br>";
+                echo "<br>" . $errmsg . "<br>";
             }
             ?>
+            <button type="submit" class="btn btn-primary"><span data-i18n="login_button"></span></button>
         </form>
         <br>
         <p><a href="register.php"><span data-i18n="no_account_text"></span></a></p>
