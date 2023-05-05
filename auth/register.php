@@ -10,9 +10,14 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
-if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("Location: ../restricted.php");
-    exit;
+if (isset($_SESSION["loggedin"]) && isset($_SESSION["user_type"]) && $_SESSION["loggedin"] === true) {
+    if ($_SESSION["user_type"] == "student") {
+        header("Location: ../student/student_index.php");
+        exit;
+    } else if ($_SESSION["user_type"] == "teacher") {
+        header("Location: ../teacher/teacher_index.php");
+        exit;
+    }
 }
 
 require_once '../config.php';

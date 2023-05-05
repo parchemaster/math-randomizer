@@ -6,9 +6,14 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
-if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("Location: ../restricted.php");
-    exit;
+if (isset($_SESSION["loggedin"]) && isset($_SESSION["user_type"]) && $_SESSION["loggedin"] === true) {
+    if ($_SESSION["user_type"] == "student") {
+        header("Location: ../student/student_index.php");
+        exit;
+    } else if ($_SESSION["user_type"] == "teacher") {
+        header("Location: ../teacher/teacher_index.php");
+        exit;
+    }
 }
 
 require_once "../config.php";
@@ -72,10 +77,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $hashed_password = $row["password"];
                 if (password_verify($_POST['password'], $hashed_password)) {
                     $_SESSION["loggedin"] = true;
+                    $_SESSION["user_type"] = "teacher";
                     $_SESSION["email"] = $row['email'];
                     $_SESSION["fullname"] = $row['fullname'];
 
-                    header("Location: ../restricted.php");
+                    header("Location: ../teacher/teacher_index.php");
                 } else {
                     $errmsg .= "<span data-i18n='login_error'></span>";
                 }
@@ -84,11 +90,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $hashed_password = $row["password"];
                 if (password_verify($_POST['password'], $hashed_password)) {
                     $_SESSION["loggedin"] = true;
+                    $_SESSION["user_type"] = "student";
                     $_SESSION["email"] = $row['email'];
                     $_SESSION["fullname"] = $row['fullname'];
                     $_SESSION["teacher_id"] = $row['teacher_id'];
 
-                    header("Location: ../restricted.php");
+                    header("Location: ../student/student_index.php");
                 } else {
                     $errmsg .= "<span data-i18n='login_error'></span>";
                 }
@@ -140,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <br>
             <?php
             if (!empty($errmsg)) {
-                echo "<br>" . $errmsg .  "<br>";
+                echo "<br>" . $errmsg . "<br>";
             }
             ?>
         </form>
