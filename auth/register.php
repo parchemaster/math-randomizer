@@ -83,29 +83,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errmsg = "";
 
     if (checkEmpty($_POST['firstname']) === true) {
-        $errmsg .= "<span data-i18n='name_error_empty'></span>";
+        $errmsg .= "<span data-i18n='name_error_empty'></span><br>";
     } elseif (checkName($_POST['firstname']) === false) {
-        $errmsg .= "<span data-i18n='name_error_format'></span>";
+        $errmsg .= "<span data-i18n='name_error_format'></span><br>";
     }
 
     if (checkEmpty($_POST['lastname']) === true) {
-        $errmsg .= "<span data-i18n='last_name_error_empty'></span>";
+        $errmsg .= "<span data-i18n='last_name_error_empty'></span><br>";
     } elseif (checkName($_POST['lastname']) === false) {
-        $errmsg .= "<span data-i18n='last_name_error_format'></span>";
+        $errmsg .= "<span data-i18n='last_name_error_format'></span><br>";
     }
 
     if (checkEmail($_POST['email']) === false) {
-        $errmsg .= "<span data-i18n='email_error_invalid'></span>";
+        $errmsg .= "<span data-i18n='email_error_invalid'></span><br>";
     }
 
     if (userExist($pdo, $_POST['email']) === true) {
-        $errmsg .= "<span data-i18n='email_error_duplicate'></span>";
+        $errmsg .= "<span data-i18n='email_error_duplicate'></span><br>";
     }
 
     if (checkEmpty($_POST['password']) === true) {
-        $errmsg .= "<span data-i18n='password_error_empty'></span>";
+        $errmsg .= "<span data-i18n='password_error_empty'></span><br>";
     } elseif (checkLength($_POST['password'], 8, 256) === false) {
-        $errmsg .= "<span data-i18n='password_error_short'></span>";
+        $errmsg .= "<span data-i18n='password_error_short'></span><br>";
     }
 
     if (empty($errmsg)) {
@@ -125,9 +125,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bindParam(":teacher_id", $teacher_id, PDO::PARAM_STR);
 
             if ($stmt->execute()) {
-                $errmsg .= "<span data-i18n='registration_success'></span>";
+                $errmsg .= "<span data-i18n='registration_success' class='success'></span><br>";
             } else {
-                $errmsg .= "<span data-i18n='unknown_error'></span>";
+                $errmsg .= "<span data-i18n='unknown_error'></span><br>";
             }
         } else if ($_POST['role'] == "teacher") {
             $sql = "INSERT INTO teachers (full_name, email, password) VALUES (:fullname, :email, :password)";
@@ -138,9 +138,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bindParam(":password", $hashed_password, PDO::PARAM_STR);
 
             if ($stmt->execute()) {
-                $errmsg .= "<span data-i18n='registration_success'></span>";
+                $errmsg .= "<span data-i18n='registration_success' class='success'></span><br>";
             } else {
-                $errmsg .= "<span data-i18n='unknown_error'></span>";
+                $errmsg .= "<span data-i18n='unknown_error'></span><br>";
             }
         }
 
@@ -163,6 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@6.1.3/i18nextBrowserLanguageDetector.min.js"></script>
 
     <script src="../lang/i18n.js"></script>
+    <style>.success{color: green}</style>
 </head>
 <body>
 <select name="language" id="languageSwitcher"></select>

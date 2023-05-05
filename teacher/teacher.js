@@ -1,9 +1,9 @@
 const form = document.getElementById("file-form");
 form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const file = document.getElementById("latex-file").files[0];
-    const formData = new FormData();
-    formData.append("file", file);
+    // event.preventDefault();
+    // const file = document.getElementById("latex-file").files[0];
+    // const formData = new FormData();
+    // formData.append("file", file);
 
     // fetch("/api/upload-latex-file", {
     //     method: "POST",
