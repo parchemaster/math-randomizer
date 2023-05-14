@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <title>数学公式采集</title>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <!-- <script type="text/javascript" src="equation-editor.js"></script>
+        <link rel="stylesheet" type="text/css" href="equation-editor.css"> -->
+        <script type="text/javascript" src="drawing-pad.js"></script>
+        <script type='text/javascript'>
+            window.addEventListener('load', function () {
+                var formulas=[];
+                var addFormula=function(formula,count){
+                    for(var i=0;i<count;i++){
+                        formulas.push(formula);
+                    }
+                }
+                // addFormula('<math><mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mi>y</mi></mrow><mrow><mi>z</mi></mrow></mfrac></mrow></math>',1);
+                // addFormula('<math><mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mo>-</mo><mi>b</mi><mo>±</mo><msqrt><mrow><msup><mrow><mi>b</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow></msqrt></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac></mrow></math>',1);
+                // addFormula('<math><mrow><mo>:</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>;</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>?</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>@</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>⋐</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>⋑</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>⇑</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>‡</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>≑</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>≒</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>≧</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>≫</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>≦</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>≶</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>≪</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>⌞</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>⌟</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>↖</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>œ</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>⫅</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>⫋</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>⫆</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>⊋</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>⫌</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>↙</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>⌜</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>υ</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>⌝</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>℘</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>¥</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>€</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>£</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>₩</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>¢</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>‰</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>↕</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>↼</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>↽</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>⇁</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>⇋</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>⇕</mo></mrow></math>',10);
+                // addFormula('<math><mrow><mo>∰</mo></mrow></math>',10);
+                addFormula('-',20);
+                addFormula('∧',20);
+                addFormula('◠',20);
+                addFormula('∿',20);
+                addFormula('→',20);
+                addFormula('↷',20);
+                addFormula('△',20);
+                addFormula('⏢',20);
+                addFormula('▭',20);
+                addFormula('▱',20);
+                addFormula('◊',20);
+                addFormula('⬠',20);
+                addFormula('○',20);
+                addFormula('☆',20);
+                var strokeNumber={"!":2,"#":4,"$":2,"%":3,"*":3,"+":2,"4":2,":":2,";":2,"=":2,"?":2,"A":3,"B":2,"D":2,"E":3,"F":3,"G":2,"H":3,"I":3,"J":2,"K":2,"M":2,"N":2,"P":2,"Q":2,"R":2,"T":2,"X":2,"Y":2,"[":2,"]":2,"b":2,"d":2,"f":2,"i":2,"j":2,"k":2,"p":2,"q":2,"t":2,"x":2,"y":2,"¥":4,"§":2,"©":2,"±":3,"×":2,"æ":2,"÷":3,"œ":2,"Δ":2,"Θ":4,"Ξ":3,"Φ":2,"Ψ":2,"θ":2,"κ":2,"λ":2,"μ":2,"π":3,"τ":2,"χ":2,"ψ":2,"ħ":2,"ћ":2,"ℏ":2,"א":3,"†":2,"‡":3,"←":2,"↑":2,"→":2,"↓":2,"↔":3,"↖":2,"↗":2,"↘":2,"↙":2,"↦":3,"↪":2,"⇐":3,"⇑":3,"⇒":3,"⇓":3,"⇔":4,"∀":2,"∃":3,"∅":2,"∇":2,"∈":2,"∋":2,"∏":3,"∐":3,"∑":2,"∓":3,"∮":2,"≃":2,"≅":3,"≈":2,"≑":4,"≒":4,"≡":3,"≤":2,"≥":2,"≦":3,"≧":3,"≪":2,"≫":2,"≶":2,"≷":2,"≼":2,"≽":2,"⊆":2,"⊇":2,"⊊":2,"⊋":2,"⊕":3,"⊖":2,"⊗":3,"⊢":2,"⊣":2,"⊥":2,"⊧":3,"⊨":3,"⋐":2,"⋑":2,"⋔":2,"■":4,"□":3,"△":3,"▷":3,"◁":3,"⫅":3,"⫆":3,"⫋":3,"⫌":3,"µ":2,"ϕ":2,"⟦":3,"⟧":3,"£":2,"®":3,"⊎":3,"↯":2,"⊙":2,"⋮":3,"⋱":3,"∢":2,"⊴":2,"▶":2,"≜":5,"⇌":2,"↤":2,"↺":2,"⇄":4,"↻":2,"⇉":4,"⇝":2,"↷":2,"↠":3,"≲":2,"≳":2,"⊚":2,"⊡":4,"⊞":5,"⊠":5,"⊛":4,"⨏":2,"∯":3,"≍":2,"≐":3,"⊸":2,"∴":3,"∵":3,"⋰":3,"≬":2,"Æ":6,"♀":3,"♂":3,"☼":7,"☾":2,"€":3,"₩":2,"¢":2,"‰":4,"↕":3,"⇋":2,"⇕":4,"∰":4}
+                var traceLists=[];
+                var currentFormula=0;
+                var colorList=['black','red','green','blue'];
+                var canvas = createDrawingPad(document.getElementById('drawing-pad'),colorList);
+                canvas.width=window.innerWidth-2;
+                canvas.height=window.innerHeight/2;
+                // var equationEditor=createEquationEditor(document.getElementById('equation-editor'));
+                var equationViewer=document.getElementById('typeset-formula');
+                var toolbar=document.getElementById('toolbar');
+                var fixColor=function(subEquation,cList,cIndex){
+                    if(subEquation.tagName=='mi'||subEquation.tagName=='mn'||subEquation.tagName=='mo'){
+                        // subEquation.classList.add('trace'+((index++)%colorList.length));
+                        var symbolColor=colorList[((cIndex++)%colorList.length)];
+                        subEquation.classList.add(symbolColor);
+                        var expectedStrokeCount=subEquation.textContent in strokeNumber?strokeNumber[subEquation.textContent]:1;
+                        for(var i=0;i<expectedStrokeCount;i++){
+                            cList.push(symbolColor);
+                        }
+                    }else{
+                        if(subEquation.tagName=='msqrt'||subEquation.tagName=='mroot'||subEquation.tagName=='mfrac'){
+                            var symbolColor=colorList[((cIndex++)%colorList.length)];
+                            subEquation.classList.add(symbolColor);
+                            cList.push(symbolColor);
+                        }
+                        var children=subEquation.children;
+                        for (var i = 0; i < children.length; i++) {
+                            cIndex=fixColor(children[i],cList,cIndex);
+                        }
+                    }
+                    return cIndex;
+                };
+                var setEquation=function(mathml){
+                    equationViewer.innerHTML=mathml;
+                    var cList=[];
+                    fixColor(equationViewer,cList,0);
+                    MathJax.typeset([equationViewer]);
+                    canvas.height=window.innerHeight-toolbar.offsetHeight-2;
+                    canvas.setColorList(cList);
+                };
+                setEquation(formulas[currentFormula]);
+                document.getElementById('clear').onclick=canvas.clearTraceList;
+                document.getElementById('undo').onclick=canvas.removeLastTrace;
+                var showNextFormula=function(){
+                    canvas.clearTraceList();
+                    ++currentFormula;
+                    if(currentFormula<formulas.length){
+                        setEquation(formulas[currentFormula]);
+                    }else{
+                        document.getElementById('export').click();
+                    }
+                };
+                document.getElementById('skip').onclick=showNextFormula;
+                document.getElementById('submit').onclick=function(){
+                    if(currentFormula<formulas.length){
+                        var pair={mathml:formulas[currentFormula],traceList:canvas.getTraceList()}
+                        traceLists.push(pair);
+                        window.traceLists=traceLists;
+                    }
+                    showNextFormula();
+                };
+                document.getElementById('export').onclick=function(){
+                    document.body.innerHTML='';
+                    var exportContent=JSON.stringify(traceLists);
+                    var a = document.createElement('a');
+                    const file = new Blob([exportContent], {type: 'text/plain'});
+                    a.href= URL.createObjectURL(file);
+                    a.download = 'formulae.txt';
+                    a.click();
+                    URL.revokeObjectURL(a.href);
+                    document.body.textContent=exportContent;
+                    var range=document.createRange();
+                    range.selectNode(document.body);
+                    document.getSelection().addRange(range);
+                    document.execCommand('copy');
+                };
+                window.addEventListener('resize',function(){
+                    canvas.width=window.innerWidth-2;
+                    canvas.height=window.innerHeight-toolbar.offsetHeight-2;
+                });
+            },false); // end window.onLoad
+        </script>
+        <style>
+            body{
+                padding: 0;
+                margin: 0;
+                font-size: 200%;
+            }
+            #drawing-pad{
+                width:100vw;
+                /* height:50vh; */
+            }
+            #drawing-pad canvas{
+                border:1px solid #777;
+            }
+            button{
+                font-size: 75%;
+                padding: 0;
+            }
+            .black{
+                color: black;
+            }
+            .red{
+                color: red;
+            }
+            .green{
+                color: green;
+            }
+            .blue{
+                color: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- <div id='equation-editor'></div> -->
+        <div id='drawing-pad'></div>
+        <div id='toolbar'>
+            <div id='typeset-formula'></div>
+            <button id='export'>导出</button>
+            <button id='clear'>重写</button>
+            <button id='undo'>撤销</button>
+            <button id='skip'>跳过</button>
+            <button id='submit'>提交</button>
+        </div>
+    </body>
+</html>
