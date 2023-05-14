@@ -13,6 +13,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("Location: ../teacher/teacher_index.php");
     exit;
 }
+
+
 ?>
 
 <!doctype html>
