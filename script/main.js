@@ -72,7 +72,6 @@ function parseSections(latexCode) {
 
 }
 
-
 const sentDataFromIpToDB = () => {
     try {
         // create an AJAX object
