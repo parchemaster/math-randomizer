@@ -41,10 +41,16 @@ class QuestionsController
     }
     public function updateQuestionWithTestId($array_questions_id, $test_id){
         foreach ($array_questions_id as $question_id){
-            $stmt = $this->connection->prepare('UPDATE questions SET test_id = :test_id WHERE id = :id');
+            $stmx = $this->connection->prepare('SELECT total_points FROM tests WHERE test_id = :test_id');
+            $stmx->bindParam(':test_id', $test_id);
+            $stmx->execute();
+            $points = $stmx->fetch(PDO::FETCH_ASSOC);
+            $points_question = (int)($points['total_points']/count($array_questions_id));
+            $stmt = $this->connection->prepare('UPDATE questions SET test_id = :test_id, points = :points WHERE id = :id');
             $x = (int)$question_id;
             $stmt->bindParam(':test_id', $test_id);
             $stmt->bindParam(':id', $x);
+            $stmt->bindParam(':points', $points_question);
             $stmt->execute();
 
         }

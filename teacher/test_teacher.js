@@ -29,7 +29,8 @@ form.addEventListener("submit", (event) => {
         end: JSON.stringify(end), points: JSON.stringify(points),
         values: JSON.stringify(values)});
         
-
+alert("Test was created succesfully");
+window.location.reload();
 });
 
 

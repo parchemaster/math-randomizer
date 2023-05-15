@@ -86,7 +86,7 @@ catch (PDOException $e){
 <div class="d-flex justify-content-center">
     <div class="d-flex justify-content-center" style="width: 700px; margin-top: 50px;">
         <div class="container">
-            <h1>Created Tests</h1>
+            <h1>Available tests</h1>
             <table class="table">
                 <thead>
                 <tr>
@@ -104,9 +104,7 @@ catch (PDOException $e){
                 {
                     
                     echo "<tr><td>" . $test["test_id"] . "</td><td>" . $test["name"] . "</td><td>" . $test["time_opened"]
-                     . "</td><td>" . $test["time_closed"] . "</td><td>" . $test["total_points"] . "</td></tr>";
-                    
-                    
+                     . "</td><td>" . $test["time_closed"] . "</td><td>" . $test["total_points"] . "</td></tr>";    
                     
                 }
                 
