@@ -13,8 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if(empty($_POST['test_id'])){
     $array = json_decode($_POST['body']);
     $array2 = json_decode($_POST['name']);
-    $QC->createQuestion($array, $array2);
+    $id=$QC->createQuestion($array, $array2);
+    $QC->latexParserToDatabase($array,$id);
     }
     
-   
 } 
