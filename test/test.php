@@ -5,6 +5,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+
+
 // Check if the user is logged in, if no then redirect him to login
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("Location: ../auth/login.php");
@@ -14,38 +16,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-require_once('../config.php');
-
-try {
-    $db = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $currentDateTime = date('Y-m-d H:i:s');
-    $tests = "SELECT * FROM tests WHERE time_opened <= :currentDateTime AND time_closed >= :currentDateTime";
-    $test_stmt = $db->prepare($tests);
-    $test_stmt->bindParam(':currentDateTime', $currentDateTime);
-    $test_stmt->execute();
-    $test_results = $test_stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // $tests = "SELECT * FROM tests";
-    // $test_stmt = $db->query($tests); 
-    // $test_results = $test_stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    $studentInfo = "SELECT * FROM students_info WHERE student_name = :studentName";
-    $studentInfo_stmt = $db->prepare($studentInfo);
-    $studentInfo_stmt->bindParam(':studentName', $_SESSION["fullname"]);
-    $studentInfo_stmt->execute();
-    // $studentInfo_results = $studentInfo_stmt->fetchAll(PDO::FETCH_ASSOC);
-    $studentInfo_results = $studentInfo_stmt->fetch(PDO::FETCH_ASSOC);
-    $passed_testsId = explode(",", $studentInfo_results["passed_tests"]);
-    $passed_testsIds = [];
-    foreach ($passed_testsId as $number) {
-        $passed_testsIds[] = $number;
-    }
-
-} catch (PDOException $e) {
-    echo $e->getMessage();
-} 
 ?>
 
 <!doctype html>
@@ -70,7 +40,7 @@ try {
     </script>
 
 
-<script src="../script/main.js" async></script>
+<script src="../script/main.js"></script>
 
 <meta name="theme-color" content="#712cf9">
 </head>
@@ -84,7 +54,7 @@ try {
 </div>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Hello, <?php echo $_SESSION["fullname"]?></a>
+    <a class="navbar-brand" href="../student/student_index.php">Hello, <?php echo $_SESSION["fullname"]?></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -101,43 +71,22 @@ try {
 <div class="d-flex justify-content-center">
     <div class="d-flex justify-content-center" style="width: 700px; margin-top: 50px;">
         <div class="container">
-            <h1>students page</h1>
-
-            <div class="table-responsive">
-                <table id="example" >
-                    <thead>
-                        <tr>
-                            <th scope="col">Tests</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <?php foreach ($test_results as $result): 
-                                if (!in_array($result['test_id'], $passed_testsIds)) {
-                                    echo '<td><a style="text-decoration: none;" href="../test/test.php?id=' . $result['test_id'] . '">'. $result['name'] .'</a></td>';
-                                }
-                            ?>  
-                
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
+            <h1>Test page</h1>
             
 
            
-                <!-- <div class="card-body">
+                <div class="card-body">
                     <div id="tex">
                     <p id="randomLatex">
                     </p>
                     </div>
 
-                    <button type="button" onclick="getRandomLatexFile()" class="w-100 btn btn-lg btn-primary">Get
+                    <button type="button" onclick="getRandomLatexFile()" class="w-100 btn btn-lg btn-success">Get
                     started</button>
                     <div class="iframe-wrapper">
                     <iframe src="../equation-editor/equation-editor.html"></iframe>
                     </div>
-                </div> -->
+                </div>
         </div>
     </div>
 </div>
