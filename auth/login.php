@@ -92,6 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION["loggedin"] = true;
                     $_SESSION["user_type"] = "student";
                     $_SESSION["email"] = $row['email'];
+                    $_SESSION["student_id"] = $row['id'];
                     $_SESSION["fullname"] = $row['full_name'];
                     $_SESSION["teacher_id"] = $row['teacher_id'];
 
