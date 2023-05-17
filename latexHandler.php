@@ -9,10 +9,13 @@ require_once 'controller/Controller.php';
 
 $CC = new Controller();
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    // TODO create a logic for sending index
-    echo json_encode($CC->getLatex('8'));
-} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //insearting new latex file 
-    $CC -> insertLatex("aaaa");
+    $testId = $_GET['id'];
+
+
+    echo json_encode($CC->getLatex($_GET['id']));
+}
+else if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+    $testId = $_GET['id'];
+    echo json_encode($_GET['id']);
 }
 

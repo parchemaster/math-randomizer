@@ -1,0 +1,24 @@
+{
+    "name": "waughj/math-parser",
+    "description": "Simple Lisp-like math parser.",
+    "keywords": [ "math", "parser" ],
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Jaimeson Waugh",
+            "email": "waughjai@gmail.com"
+        }
+    ],
+    "type": "library",
+    "require": {
+		"php": ">=7.2"
+    },
+    "require-dev": {
+		"phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "WaughJ\\MathParser\\": "src/"
+        }
+    }
+}

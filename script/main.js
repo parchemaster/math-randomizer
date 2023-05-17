@@ -10,31 +10,95 @@ window.MathJax = {
 };
 
 
+// function getRandomLatexFile() {
+//     try {
+//         // create an AJAX object
+//         var xhttp = new XMLHttpRequest();
+
+//         // set up the callback function for when the request is complete
+//         xhttp.onreadystatechange = function () {
+//             if (this.readyState == 4 && this.status == 200) {
+//                 console.log(this.responseText);
+//                 // parseSections(this.responseText);
+//             }
+//         };
+
+//         // send the AJAX request to the PHP file
+//         xhttp.open("GET", "https://site212.webte.fei.stuba.sk/final/latexHandler.php", true);
+//         xhttp.send();
+//     }
+//     catch (e) {
+//         console.log(e);
+//     }
+
+// }
+var quations = []
 function getRandomLatexFile() {
     try {
-        // create an AJAX object
+        var urlParams = new URLSearchParams(window.location.search);
+        var id = urlParams.get('id');
         var xhttp = new XMLHttpRequest();
-
-        // set up the callback function for when the request is complete
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                // console.log(this.responseText);
-                parseSections(this.responseText);
+                quations = quations.concat(this.responseText)
+                var button = document.querySelector('button[type="button"][onclick="getRandomLatexFile()"]');
+                activateButton(quations, button)
+                if (button) {
+                    button.onclick = function () {
+                        activateButton(quations, button)
+                    };
+                    button.innerText = 'Next quation';
+                    button.className = "w-100 btn btn-lg btn btn-primary"
+                }
             }
         };
-
-        // send the AJAX request to the PHP file
-        xhttp.open("GET", "https://site212.webte.fei.stuba.sk/final/latexHandler.php", true);
+        var url = "https://site212.webte.fei.stuba.sk/final/latexHandler.php?id=" + id;
+        xhttp.open("GET", url, true);
         xhttp.send();
-    }
-    catch (e) {
+    } catch (e) {
         console.log(e);
     }
-
 }
 
-function parseSections(latexCode) {
-    latexCode = JSON.parse(latexCode).file
+
+
+function finishTestPHP() {
+    try {
+        var urlParams = new URLSearchParams(window.location.search);
+        var id = urlParams.get('id');
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText)
+                window.location.href = "../student/student_index.php";
+            }
+        };
+        var url = "https://site212.webte.fei.stuba.sk/final/handler/studentInfoHandler.php?testId=" + id;
+        xhttp.open("PUT", url, true);
+        xhttp.send();
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+function activateButton(quations, button) {
+    if (quations.length > 0) {
+        quation = quations.pop()
+        parseSections(quation)
+    }
+    else {
+        button.innerText = 'Finish test';
+        button.className = "w-100 btn btn-lg btn btn-warning"
+        button.onclick = function () {
+            console.log("test was finished")
+            finishTestPHP()
+        };
+    }
+}
+
+function parseSections(latexCode2) {
+    var object = JSON.parse(latexCode2);
+    latexCode = object["question"]
     const taskRegex = /\\begin{task}([\s\S]*?)\\end{task}/g;
     const solutionRegex = /\\begin{solution}([\s\S]*?)\\end{solution}/g;
     const taskMatches = Array.from(latexCode.matchAll(taskRegex));
@@ -71,7 +135,6 @@ function parseSections(latexCode) {
     }
 
 }
-
 
 const sentDataFromIpToDB = () => {
     try {

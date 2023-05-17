@@ -22,11 +22,18 @@ class Controller
     }
 
     public function getLatex(int $id): mixed {
-        $stmt = $this->conn->prepare("SELECT file
-                                           FROM latex
-                                           WHERE id=:id");
+        // $stmt = $this->conn->prepare("SELECT file FROM quations");
+        // $questions = "SELECT * FROM questions WHERE test_id = :testId";
+        // $question_stmt = $this->$conn->prepare($questions);
+        // $question_stmt->bindParam(':testId', $id);
+        // $question_stmt->execute();
+        // $question_results = $question_stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt = $this->conn->prepare("SELECT * FROM questions WHERE test_id = :testId");
+        $stmt->bindParam(':testId', $id, PDO::PARAM_INT);
+        $stmt->execute();
 
-        $stmt->bindParam(":id", $id, PDO::PARAM_STR);
+        // $stmt = $this->conn->prepare("SELECT * FROM questions WHERE test_id = :testId");
+        // $stmt->execute([$id]);
 
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
