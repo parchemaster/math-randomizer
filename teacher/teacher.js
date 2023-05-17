@@ -1,4 +1,9 @@
-
+$(document).ready(function () {
+    $('#table').DataTable({
+  
+        order: [[1, 'asc'], [2, 'asc'], [3,'asc'], [4,'asc']]
+      });
+  });
 function exportToCSV() {
     var table = document.getElementsByTagName("table")[0];
     var rows = table.rows;

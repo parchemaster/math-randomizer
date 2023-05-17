@@ -66,6 +66,15 @@ class QuestionsController
         return (int)$this->connection->lastInsertId();
         
     }
+    public function assignTest($student_id, $array_test_id)
+    {
+        $stmt = $this->connection->prepare("UPDATE students_info SET assigned_tests = :assigned_tests WHERE student_id = :student_id");
+        $stmt->bindParam(':assigned_tests', $array_test_id, PDO::PARAM_STR);
+        $stmt->bindParam(':student_id', $student_id, PDO::PARAM_STR);
+        $stmt->execute();
+        
+        
+    }
 
 
     public function getAllTests()
@@ -120,16 +129,6 @@ class QuestionsController
         unset($stmt);
     }
 
-
-    private function createAnswer($question_id, $answer)
-    {
-        $stmt = $this->connection->prepare('insert into questions (question_id, answer) value (?, ?)');
-        $stmt->bindParam(':question_id', $question_id);
-        $stmt->bindParam(':answer', $answer);
-        $stmt->execute();
-        unset($stmt);
-        return $this->connection->lastInsertId();
-    }
 
 
 
