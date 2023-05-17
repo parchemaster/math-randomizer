@@ -166,9 +166,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <style>.success{color: green}</style>
 </head>
 <body>
-<select name="language" id="languageSwitcher"></select>
 <div class="d-flex justify-content-center">
     <div class="mx-auto">
+        <br>
+        <select name="language" id="languageSwitcher"></select>
+        <br>
+        <br>
         <h1 data-i18n='signup_heading'></h1>
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
             <br>
