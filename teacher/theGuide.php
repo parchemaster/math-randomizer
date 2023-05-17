@@ -15,48 +15,53 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 }
 
 ?>
-<!doctype html>
-<html>
+    <!doctype html>
+    <html>
 
-<head>
-    <title>teacher</title>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js">
-    </script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js">
+    <head>
+        <title>teacher</title>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js">
+        </script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/i18next@21.6.10/i18next.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@1.3.2/i18nextHttpBackend.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-i18next@1.2.1/jquery-i18next.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@6.1.3/i18nextBrowserLanguageDetector.min.js"></script>
+        <script src="../lang/i18n.js"></script>
+    </head>
 
-    </script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
-</head>
-
-<body>
+    <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Hello,
-            <?php echo $_SESSION["fullname"] ?>
-        </a>
+        <a class="navbar-brand" href="#"><span data-i18n="hello_label"></span><?php echo $_SESSION["fullname"] ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="teacher_index.php">Home</a>
+                    <a class="nav-link" href="teacher_index.php" data-i18n="home_label"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="createQuestion.php">Create Question</a>
+                    <a class="nav-link" href="createQuestion.php" data-i18n="Create_Question"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="createTest.php">Create Test</a>
+                    <a class="nav-link" href="createTest.php" data-i18n="Create_Test"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="assignTestToStudent.php">Assign test to a student</a>
+                    <a class="nav-link" href="assignTestToStudent.php" data-i18n="Assign_test">Assign test to a
+                        student</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="theGuide.php">How to use Teacher page</a>
+                    <a class="nav-link active" href="theGuide.php" data-i18n="How_to_use_Teacher">How to use Teacher page</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../auth/logout.php">Logout</a>
+                    <a class="nav-link" href="../auth/logout.php" data-i18n="Logout_label">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <select name="language" id="languageSwitcher"></select>
                 </li>
             </ul>
         </div>
@@ -65,40 +70,32 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <div class="d-flex justify-content-center">
         <div class="d-flex" style="width: 50%; margin-top: 20px;">
             <div class="container">
-            <form method="post">
-                
-                <h3>Available features and how to use them:</h3>
-                <br>
-                <ul>
+                <form method="post">
+
+                    <h3 data-i18n="Available_features"></h3>
+                    <br>
                     <ol>
-                        <li><b>Create a question</b></li>
-                        <br>
-                        <p><b>How</b>: open page "Create Question", set name of the question, load LaTeX file, click on
-                            "Submit". Question will be created</p>
-                        <li><b>Create a test</b></li>
-                        <br>
-                        <p><b>How</b>: open page "Create Test", set start date of test, set deadline for this test, set
-                            name of the test,
-                            set total points for this test, choose all questions you want to assign for this test. click
-                            on "Submit". Test will be created</p>
-                        <li><b>Assign test to a student</b></li>
-                        <br>
-                        <p><b>How</b>: open page "Assign test to a student", click on name of the student you want to
-                            assign a test,
-                            on the next page select tests you want to assign,
-                            click on "Submit". Now student will see assigned tests for them.</p>
-                        <li><b>Filter and export to CSV table with students.</b></li>
-                        <br>
-                        <p><b>How</b>: open teacher home page, then you can filter students by all available categories.
-                        <p>To export table in a CSV format: click on "Export to CSV" and you will download table in a
-                            CSV format.</p>
-                        </p>
-
-
+                        <li>
+                            <strong data-i18n="Create_a_question"></strong>
+                            <p data-i18n="feature1"></p>
+                        </li>
+                        <li>
+                            <strong data-i18n="Create_a_test"></strong>
+                            <p data-i18n="feature2"></p>
+                        </li>
+                        <li>
+                            <strong data-i18n="Assign_test_to_a_student"></strong>
+                            <p data-i18n="feature3"></p>
+                        </li>
+                        <li>
+                            <strong data-i18n="Filter_and_export_to_CSV"></strong>
+                            <p data-i18n="feature4"></p>
+                            <p data-i18n="To_export_table"></p>
+                        </li>
                     </ol>
-                </ul>
-                <input type="text" name="name" class="form-control" id="InputName" style="display:none">
-                    <button type="submit" class="btn btn-primary">Export to Pdf</button>
+
+                    <input type="text" name="name" class="form-control" id="InputName" style="display:none">
+                    <button type="submit" class="btn btn-primary" data-i18n="Export_to_PDF"></button>
                 </form>
 
 
@@ -107,25 +104,25 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     </div>
 
 
-</body>
+    </body>
 
-</html>
+    </html>
 <?php
 require_once('../pdf/pdf.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-if (!empty($_POST)) {
-    $pdf = new Pdf();
+    if (!empty($_POST)) {
+        $pdf = new Pdf();
 
-    $file_name = 'Test_Results.pdf';
-    
-    $html = file_get_contents("theGuide.php");
-    $pdf->loadHtml($html);
+        $file_name = 'Test_Results.pdf';
 
-    $pdf->render();
-    ob_end_clean(); 
-    $pdf->stream($file_name, array("Attachment" => false));
-}
+        $html = file_get_contents("theGuide.php");
+        $pdf->loadHtml($html);
+
+        $pdf->render();
+        ob_end_clean();
+        $pdf->stream($file_name, array("Attachment" => false));
+    }
 }
 exit(0);
 ?>

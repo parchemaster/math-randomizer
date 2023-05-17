@@ -60,121 +60,121 @@ try {
 
 <head>
     <title>teacher</title>
-    <script type="text/javascript" 
-          src="https://code.jquery.com/jquery-3.5.1.js">
-  </script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src=
-"https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src= "https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
 
-  </script>
-   <link rel="stylesheet"
-        href=
-"https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/i18next@21.6.10/i18next.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@1.3.2/i18nextHttpBackend.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-i18next@1.2.1/jquery-i18next.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@6.1.3/i18nextBrowserLanguageDetector.min.js"></script>
+    <script src="../lang/i18n.js"></script>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Hello,
-            <?php echo $_SESSION["fullname"] ?>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#"><span data-i18n="hello_label"></span><?php echo $_SESSION["fullname"] ?></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="teacher_index.php">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="createQuestion.php">Create Question</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="createTest.php">Create Test</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="assignTestToStudent.php">Assign test to a student</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="theGuide.php">How to use Teacher page</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../auth/logout.php">Logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link active" href="teacher_index.php" data-i18n="home_label"></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="createQuestion.php" data-i18n="Create_Question"></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="createTest.php" data-i18n="Create_Test"></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="assignTestToStudent.php" data-i18n="Assign_test">Assign test to a student</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="theGuide.php" data-i18n="How_to_use_Teacher">How to use Teacher page</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../auth/logout.php" data-i18n="Logout_label">Logout</a>
+            </li>
+            <li class="nav-item">
+                <select name="language" id="languageSwitcher"></select>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-    <div class="d-flex justify-content-center">
-        <div class="d-flex justify-content-center" style="width: 700px; margin-top: 50px;">
-            <div class="container">
-                <h1>Created Tests</h1>
-                <table class="table table-striped table-bordered table-sm">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Date Opened</th>
-                            <th>Date Closed</th>
-                            <th>Total Points</th>
+<div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center" style="width: 700px; margin-top: 50px;">
+        <div class="container">
+            <h1 data-i18n="Created_Tests">Created Tests</h1>
+            <table class="table table-striped table-bordered table-sm">
+                <thead>
+                <tr>
+                    <th data-i18n="id_label"></th>
+                    <th data-i18n="name_label"></th>
+                    <th data-i18n="opened_label"></th>
+                    <th data-i18n="closed_label"></th>
+                    <th data-i18n="total_points"></th>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        foreach ($tests as $test) {
-                            if ($test["teacher_id"] == $teacher_id) {
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                foreach ($tests as $test) {
+                    if ($test["teacher_id"] == $teacher_id) {
 
-                                echo "<tr><td>" . $test["test_id"] . "</td><td>" . $test["name"] . "</td><td>" . $test["time_opened"]
-                                    . "</td><td>" . $test["time_closed"] . "</td><td>" . $test["total_points"] . "</td></tr>";
+                        echo "<tr><td>" . $test["test_id"] . "</td><td>" . $test["name"] . "</td><td>" . $test["time_opened"]
+                            . "</td><td>" . $test["time_closed"] . "</td><td>" . $test["total_points"] . "</td></tr>";
 
-                            }
+                    }
 
+                }
+
+                ?>
+                </tbody>
+            </table>
+
+            <br>
+
+            <br>
+
+            <h1 data-i18n="Students_info"></h1>
+
+            <table id="table" class="table table-striped table-bordered table-sm">
+                <thead>
+                <tr>
+                    <th data-i18n="ID_of_student"></th>
+                    <th data-i18n="name_label"></th>
+                    <th data-i18n="Generated_Tasks"></th>
+                    <th data-i18n="Submitted_Tasks"></th>
+                    <th data-i18n="Points_label"></th>
+                </tr>
+
+                </thead>
+                <tbody>
+                <?php
+                foreach ($students as $student) {
+
+                    echo "<tr><td>" . $student["id"] . "</td><td>" . $student["full_name"] . "</td>";
+                    foreach ($students_info as $info) {
+                        if ($info["student_id"] == $student["id"]) {
+                            echo "<td>" . $info["tasks_gen"] . "</td><td>" . $info["tasks_sub"] . "</td><td>" . $info["points"] . "</td></tr>";
                         }
+                    }
+                }
 
-                        ?>
-                    </tbody>
-                </table>
-
-                <br>
-
-                <br>
-
-                <h1>Students info</h1>
-
-                <table id="table" class="table table-striped table-bordered table-sm">
-                    <thead>
-                        <tr>
-                            <th>ID of student</th>
-                            <th>Name</th>
-                            <th>Generated Tasks</th>
-                            <th>Submitted Tasks</th>
-                            <th>Points</th>
-                        </tr>
-
-                    </thead>
-                    <tbody>
-                        <?php
-                        foreach ($students as $student) {
-
-                            echo "<tr><td>" . $student["id"] . "</td><td>" . $student["full_name"] . "</td>";
-                            foreach ($students_info as $info) {
-                                if ($info["student_id"] == $student["id"]) {
-                                    echo "<td>" . $info["tasks_gen"] . "</td><td>" . $info["tasks_sub"] . "</td><td>" . $info["points"] . "</td></tr>";
-                                }
-                            }
-                        }
-
-                        ?>
-                    </tbody>
-                </table>
-                <button onclick="exportToCSV()">Export to CSV</button>
-            </div>
+                ?>
+                </tbody>
+            </table>
+            <button onclick="exportToCSV()" data-i18n="ExportCSV_button">Export to CSV</button>
         </div>
     </div>
+</div>
 
-    <script src="teacher.js"></script>
+<script src="teacher.js"></script>
 </body>
 
 </html>
