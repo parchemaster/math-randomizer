@@ -5,6 +5,10 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+// foreach ($_SESSION as $key => $value) {
+//     echo $key . ' => ' . $value . '<br>';
+// }
+
 // Check if the user is logged in, if no then redirect him to login
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("Location: ../auth/login.php");
@@ -13,13 +17,11 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("Location: ../teacher/teacher_index.php");
     exit;
 }
-
 require_once('../config.php');
 
 try {
     $db = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
     $currentDateTime = date('Y-m-d H:i:s');
     $tests = "SELECT * FROM tests WHERE time_opened <= :currentDateTime AND time_closed >= :currentDateTime";
     $test_stmt = $db->prepare($tests);
@@ -31,16 +33,18 @@ try {
     // $test_stmt = $db->query($tests); 
     // $test_results = $test_stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $studentInfo = "SELECT * FROM students_info WHERE student_name = :studentName";
+    $studentInfo = "SELECT * FROM students_info WHERE student_id = :studentID";
     $studentInfo_stmt = $db->prepare($studentInfo);
-    $studentInfo_stmt->bindParam(':studentName', $_SESSION["fullname"]);
+    $studentInfo_stmt->bindParam(':studentID', $_SESSION["student_id"]);
     $studentInfo_stmt->execute();
     // $studentInfo_results = $studentInfo_stmt->fetchAll(PDO::FETCH_ASSOC);
     $studentInfo_results = $studentInfo_stmt->fetch(PDO::FETCH_ASSOC);
-    $passed_testsId = explode(",", $studentInfo_results["passed_tests"]);
     $passed_testsIds = [];
-    foreach ($passed_testsId as $number) {
-        $passed_testsIds[] = $number;
+    if ($studentInfo_results["passed_tests"] !== NULL) {
+        $passed_testsId = explode(",", $studentInfo_results["passed_tests"]);
+        foreach ($passed_testsId as $number) {
+            $passed_testsIds[] = $number;
+        }
     }
 
 } catch (PDOException $e) {
@@ -94,7 +98,7 @@ try {
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" href="../auth/logout.php">Logout</a>
