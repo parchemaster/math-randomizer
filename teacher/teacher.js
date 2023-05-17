@@ -1,7 +1,17 @@
 $(document).ready(function () {
     $('#table').DataTable({
   
-        order: [[1, 'asc'], [2, 'asc'], [3,'asc'], [4,'asc']]
+        "lengthMenu": [[5, 10, 20, -1], [5, 10, 20, "All"]],
+        "columns": [
+            { "orderable": true },
+            { "orderable": true },
+            { "orderable": true },
+            { "orderable": true },
+            { "orderable": true },
+        ],
+        columnDefs: [
+            { targets: [2,3,4], orderData: [1,2,3,4] }
+        ]
       });
   });
 function exportToCSV() {
