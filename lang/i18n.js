@@ -98,6 +98,9 @@ $(function () {
                         "Assign_test_to_a_student": "Assign test to a student",
                         "Filter_and_export_to_CSV": "Filter and export to CSV table with students.",
                         "To_export_table": "To export table in a CSV format: click on \"Export to CSV\" and you will download table in a CSV format.",
+
+                        //---------------------------------------------------//
+
                     }
                 },
                 sk: {
@@ -177,6 +180,9 @@ $(function () {
                         "Assign_test_to_a_student": "Priradiť test študentovi",
                         "Filter_and_export_to_CSV": "Filtrovať a exportovať tabuľku so študentmi do formátu CSV",
                         "To_export_table": "Pre export tabuľky vo formáte CSV: kliknite na \"Exportovať do CSV\" a stiahnete si tabuľku vo formáte CSV."
+
+                        //---------------------------------------------------//
+
                     }
                 }
             }
