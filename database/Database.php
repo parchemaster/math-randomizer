@@ -2,6 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+require_once '../config.php';
 
 
 class Database {
@@ -11,11 +12,7 @@ class Database {
     public function getConnection(): ?PDO
     {
 
-        $hostname = "localhost";
-        $username = "username";
-        $password = "password";
-        $dbname = "random_math";
-
+        global $hostname, $dbname, $username, $password;
 
         $this->conn = null;
         try

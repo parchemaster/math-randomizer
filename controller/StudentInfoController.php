@@ -26,17 +26,17 @@ class StudentInfoController
         // Assuming you have a database connection established and stored in the $connection variable
         
         // Prepare the update query
-        $query = "UPDATE students_info SET passed_tests = CONCAT(passed_tests, :testId, ',') WHERE student_name = :studentName";
+        $query = "UPDATE students_info SET passed_tests = CONCAT(passed_tests, :testId, ',') WHERE student_id = :studentID";
         $stmt = $this->conn->prepare($query);
         
         // Bind the parameters
         $stmt->bindValue(':testId', $testId, PDO::PARAM_INT);
-        $stmt->bindValue(':studentName', $studentName, PDO::PARAM_STR);
+        $stmt->bindValue(':studentID', $_SESSION["student_id"], PDO::PARAM_INT);
         
         // Execute the query
         $result = $stmt->execute();
         
-        return $result;
+        echo "good";
     }
     
 
