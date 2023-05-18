@@ -158,10 +158,11 @@ try {
                 <?php
                 foreach ($students as $student) {
 
-                    echo "<tr><td>" . $student["id"] . "</td><td>" . $student["full_name"] . "</td>";
+                    echo "<tr><td>" . $student["id"] . "</td><td><a href='checkTest.php?id=" . $student["id"] . "'>" . $student["full_name"] . "<a></td>";
                     foreach ($students_info as $info) {
                         if ($info["student_id"] == $student["id"]) {
                             echo "<td>" . $info["tasks_gen"] . "</td><td>" . $info["tasks_sub"] . "</td><td>" . $info["points"] . "</td></tr>";
+
                         }
                     }
                 }

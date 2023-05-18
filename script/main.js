@@ -60,7 +60,7 @@ function getRandomLatexFile() {
     }
 }
 
-
+var section;
 
 function finishTestPHP() {
     try {
