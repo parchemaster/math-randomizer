@@ -38,6 +38,7 @@ var section;
 var startTest=false;
 function getRandomLatexFile() {
     try {
+
         var urlParams = new URLSearchParams(window.location.search);
         var id = urlParams.get('id');
         var xhttp = new XMLHttpRequest();
@@ -103,12 +104,12 @@ function activateButton(quations, button) {
             finishTestPHP()
         };
     }
-    startTest=true;
 }
 
 var questionIndex = 0
 
 function parseSections(latexCode2) {
+    startTest=true;
     var object = JSON.parse(latexCode2);
     console.log(object)
     latexCode = object[questionIndex]["question"]
@@ -143,7 +144,8 @@ function parseSections(latexCode2) {
 
         // Create an img tag and set its src and style attributes
         const img = document.createElement("img");
-        img.src = "latex/" + imagePath;
+        console.log(imagePath)
+        img.src = "../latex/" + imagePath;
         img.style.maxWidth = "100%";
         img.style.height = "auto";
 
@@ -151,6 +153,7 @@ function parseSections(latexCode2) {
         const pLatexNew = document.querySelector("#randomLatex");
         pLatexNew.innerHTML = pLatexNew.innerHTML.replace("\\includegraphics{" + imagePath + "}", "");
         pLatexNew.appendChild(img);
+
     } else {
         console.log("No image path found.");
     }

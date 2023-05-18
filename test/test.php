@@ -35,6 +35,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
     crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
 
     <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -43,8 +45,11 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 
 <script src="../script/main.js"></script>
+    <script src="../script/result.js"></script>
+    <script src="../script/latexParser.js"></script>
 
-<meta name="theme-color" content="#712cf9">
+
+    <meta name="theme-color" content="#712cf9">
 </head>
 <body>
 <div id="modal" class="modal">
@@ -115,5 +120,12 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 </body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
 
 <script src="student.js"></script>
+<script> var myFrame = document.getElementById('nr-ext-rsicon');
+    var mathDiv;
+    // Ожидаем загрузку iframe
+    myFrame.onload = function () {
+        var frameContent = myFrame.contentDocument || myFrame.contentWindow.document;
+        mathDiv = frameContent.getElementById('LatexOutput');
+    };</script>
 </body>
 </html>
