@@ -130,16 +130,6 @@ class QuestionsController
     }
 
 
-    private function createAnswer($question_id, $answer)
-    {
-        $stmt = $this->connection->prepare('insert into questions (question_id, answer) value (?, ?)');
-        $stmt->bindParam(':question_id', $question_id);
-        $stmt->bindParam(':answer', $answer);
-        $stmt->execute();
-        unset($stmt);
-        return $this->connection->lastInsertId();
-    }
-
 
 
    
