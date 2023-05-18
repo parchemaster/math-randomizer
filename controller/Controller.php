@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require_once ("database/Database.php");
+require_once ("../database/Database.php");
 
 class Controller
 {
@@ -35,7 +35,7 @@ class Controller
         // $stmt = $this->conn->prepare("SELECT * FROM questions WHERE test_id = :testId");
         // $stmt->execute([$id]);
 
-        $stmt->execute();
+        //$stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         return $stmt->fetch();
     }

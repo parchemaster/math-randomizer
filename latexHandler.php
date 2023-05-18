@@ -10,8 +10,6 @@ require_once 'controller/Controller.php';
 $CC = new Controller();
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $testId = $_GET['id'];
-
-
     echo json_encode($CC->getLatex($_GET['id']));
 }
 else if ($_SERVER['REQUEST_METHOD'] === 'PUT') {

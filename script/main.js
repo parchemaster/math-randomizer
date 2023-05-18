@@ -54,8 +54,8 @@ function getRandomLatexFile() {
                     button.className = "w-100 btn btn-lg btn btn-primary"
                 }
             }
-        };
-        var url = "https://site212.webte.fei.stuba.sk/final/latexHandler.php?id=" + id;
+        };     
+        var url = "https://site203.webte.fei.stuba.sk/project/latexHandler.php?id=" + id;
         xhttp.open("GET", url, true);
         xhttp.send();
     } catch (e) {
@@ -75,8 +75,8 @@ function finishTestPHP() {
                 console.log(this.responseText)
                 window.location.href = "../student/student_index.php";
             }
-        };
-        var url = "https://site212.webte.fei.stuba.sk/final/handler/studentInfoHandler.php?testId=" + id;
+        };          
+        var url = "https://site203.webte.fei.stuba.sk/project/handler/studentInfoHandler.php?testId=" + id;
         xhttp.open("PUT", url, true);
         xhttp.send();
     } catch (e) {
@@ -86,6 +86,7 @@ function finishTestPHP() {
 
 function activateButton(quations, button) {
     if(startTest){
+        console.log("tut");
         checkResult(section);
     }
     if (quations.length > 0) {
@@ -101,10 +102,10 @@ function activateButton(quations, button) {
             finishTestPHP()
         };
     }
+    startTest=true;
 }
 
 function parseSections(latexCode2) {
-    startTest=true;
     var object = JSON.parse(latexCode2);
     latexCode = object["question"]
     const taskRegex = /\\begin{task}([\s\S]*?)\\end{task}/g;
