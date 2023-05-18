@@ -172,9 +172,8 @@ function checkResult(elem){
     $.ajax({
          type: 'POST',
          url: "https://site203.webte.fei.stuba.sk/project/server/mathResult.php",
-         data: {example: "1",
-                result:mathFormath,
-                right:'null'
+         data: {section: section,
+                result:parseLatex
               },
          success: function(msg){
                 rightAnswer=parseLatex(msg);
