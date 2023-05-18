@@ -43,6 +43,7 @@ function getRandomLatexFile() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
+                // console.log(this.responseText)
                 quations = quations.concat(this.responseText)
                 var button = document.querySelector('button[type="button"][onclick="getRandomLatexFile()"]');
                 activateButton(quations, button)
@@ -55,7 +56,7 @@ function getRandomLatexFile() {
                 }
             }
         };     
-        var url = "https://site203.webte.fei.stuba.sk/project/latexHandler.php?id=" + id;
+        var url = "../latexHandler.php?id=" + id;
         xhttp.open("GET", url, true);
         xhttp.send();
     } catch (e) {
@@ -76,7 +77,7 @@ function finishTestPHP() {
                 window.location.href = "../student/student_index.php";
             }
         };          
-        var url = "https://site203.webte.fei.stuba.sk/project/handler/studentInfoHandler.php?testId=" + id;
+        var url = "../handler/studentInfoHandler.php?testId=" + id;
         xhttp.open("PUT", url, true);
         xhttp.send();
     } catch (e) {
@@ -107,11 +108,12 @@ function activateButton(quations, button) {
 
 function parseSections(latexCode2) {
     var object = JSON.parse(latexCode2);
-    latexCode = object["question"]
+    console.log(object)
+    latexCode = object[0]["question"]
     const taskRegex = /\\begin{task}([\s\S]*?)\\end{task}/g;
     const solutionRegex = /\\begin{solution}([\s\S]*?)\\end{solution}/g;
     const regexSection = /\\section\*{(\w+)}/g;
-    const sectionMatches = Array.from(latexCode.matchAll(regexSection)); 
+    const sectionMatches = Array.from(latexCode.matchAll(regexSection));
     const taskMatches = Array.from(latexCode.matchAll(taskRegex));
     const solutionMatches = Array.from(latexCode.matchAll(solutionRegex));
 
@@ -163,7 +165,7 @@ const sentDataFromIpToDB = () => {
         };
 
         // send the AJAX request to the PHP file
-        xhttp.open("GET", "https://site212.webte.fei.stuba.sk/final/latexHandler.php", true);
+        xhttp.open("GET", "../latexHandler.php", true);
         xhttp.send();
     }
     catch (e) {

@@ -9,7 +9,7 @@ myFrame.onload = function() {
 function checkResult(sectionId){
     $.ajax({
          type: 'POST',
-         url: "https://site203.webte.fei.stuba.sk/project/server/mathResult.php",
+         url: "../server/mathResult.php",
          data: {section: sectionId,
                 result:parseLatex(mathDiv.textContent)
               },
