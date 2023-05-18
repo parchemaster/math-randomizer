@@ -10,6 +10,7 @@ window.MathJax = {
 };
 
 
+
 // function getRandomLatexFile() {
 //     try {
 //         // create an AJAX object
@@ -33,6 +34,8 @@ window.MathJax = {
 
 // }
 var quations = []
+var section;
+var startTest=false;
 function getRandomLatexFile() {
     try {
         var urlParams = new URLSearchParams(window.location.search);
@@ -60,7 +63,7 @@ function getRandomLatexFile() {
     }
 }
 
-var section;
+
 
 function finishTestPHP() {
     try {
@@ -82,6 +85,9 @@ function finishTestPHP() {
 }
 
 function activateButton(quations, button) {
+    if(startTest){
+        checkResult(section);
+    }
     if (quations.length > 0) {
         quation = quations.pop()
         parseSections(quation)
@@ -91,21 +97,28 @@ function activateButton(quations, button) {
         button.className = "w-100 btn btn-lg btn btn-warning"
         button.onclick = function () {
             console.log("test was finished")
+            startTest=false;
             finishTestPHP()
         };
     }
 }
 
 function parseSections(latexCode2) {
+    startTest=true;
     var object = JSON.parse(latexCode2);
     latexCode = object["question"]
     const taskRegex = /\\begin{task}([\s\S]*?)\\end{task}/g;
     const solutionRegex = /\\begin{solution}([\s\S]*?)\\end{solution}/g;
+    const regexSection = /\\section\*{(\w+)}/g;
+    const sectionMatches = Array.from(latexCode.matchAll(regexSection)); 
     const taskMatches = Array.from(latexCode.matchAll(taskRegex));
     const solutionMatches = Array.from(latexCode.matchAll(solutionRegex));
 
+
     // Select a random task match
-    const randomTaskMatch = taskMatches[Math.floor(Math.random() * taskMatches.length)];
+    const randomNumber = Math.floor(Math.random() * taskMatches.length)
+    const randomTaskMatch = taskMatches[randomNumber];
+    section = sectionMatches[randomNumber];
     // Display the random task match
     const pLatex = document.querySelector("#randomLatex");
 
