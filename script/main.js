@@ -106,10 +106,15 @@ function activateButton(quations, button) {
     startTest=true;
 }
 
+var questionIndex = 0
+
 function parseSections(latexCode2) {
     var object = JSON.parse(latexCode2);
     console.log(object)
-    latexCode = object[0]["question"]
+    latexCode = object[questionIndex]["question"]
+    if( questionIndex < object.length) {
+        questionIndex ++
+    }
     const taskRegex = /\\begin{task}([\s\S]*?)\\end{task}/g;
     const solutionRegex = /\\begin{solution}([\s\S]*?)\\end{solution}/g;
     const regexSection = /\\section\*{(\w+)}/g;
