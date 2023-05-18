@@ -106,7 +106,9 @@ function activateButton(quations, button) {
     }
 }
 
-var questionIndex = 0
+var questionIndex = 0;
+var myFrame;
+var mathDiv;
 
 function parseSections(latexCode2) {
     startTest=true;

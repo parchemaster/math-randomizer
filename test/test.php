@@ -91,7 +91,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <button type="button" onclick="getRandomLatexFile()" class="w-100 btn btn-lg btn-success">Get
                     started</button>
                     <div class="iframe-wrapper">
-                    <iframe src="../equation-editor/equation-editor.html"></iframe>
+                    <iframe id="latexFrame" src="../equation-editor/equation-editor.html"></iframe>
                     </div>
                 </div>
         </div>
@@ -120,12 +120,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 </body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
 
 <script src="student.js"></script>
-<script> var myFrame = document.getElementById('nr-ext-rsicon');
-    var mathDiv;
-    // Ожидаем загрузку iframe
-    myFrame.onload = function () {
+<script>  myFrame = document.getElementById("latexFrame"); console.log(myFrame)
+     myFrame.onload = function () {
         var frameContent = myFrame.contentDocument || myFrame.contentWindow.document;
         mathDiv = frameContent.getElementById('LatexOutput');
-    };</script>
+        console.log('aaa');
+    };
+</script>
+
 </body>
 </html>
