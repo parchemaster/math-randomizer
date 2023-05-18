@@ -50,6 +50,12 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <a class="nav-link" href="createTest.php">Create Test</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="assignTestToStudent.php">Assign test to a student</a>
+            </li>
+            <li class="nav-item">
+                    <a class="nav-link" href="theGuide.php">How to use Teacher page</a>
+                </li>
+            <li class="nav-item">
                 <a class="nav-link" href="../auth/logout.php">Logout</a>
             </li>
         </ul>

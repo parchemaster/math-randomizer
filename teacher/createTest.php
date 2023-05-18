@@ -13,8 +13,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("Location: ../student/student_index.php");
     exit;
 }
-try
-{
+try {
     require_once '../config.php';
     $db = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
 
@@ -24,11 +23,11 @@ try
     $stmt = $db->query($query_questions);
     $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
     unset($stmt);
-   
 
-}catch (PDOException $e){
+
+} catch (PDOException $e) {
     echo $e->getMessage();
-    
+
 }
 
 ?>
@@ -50,35 +49,45 @@ try
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Hello, <?php echo $_SESSION["fullname"]?></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Hello,
+            <?php echo $_SESSION["fullname"] ?>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-        <li class="nav-item">
-                <a class="nav-link" href="teacher_index.php">Home</a>
-            </li>
-        <li class="nav-item">
-                <a class="nav-link" href="createQuestion.php">Create Question</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="createTest.php">Create Test</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../auth/logout.php">Logout</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="teacher_index.php">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="createQuestion.php">Create Question</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="createTest.php">Create Test</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="assignTestToStudent.php">Assign test to a student</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="theGuide.php">How to use Teacher page</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../auth/logout.php">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div class="container py-5">
         <h1>Create a new test</h1>
         <form id="file-form">
             <div class="form-group">
                 <div class="row">
-                    <label id = "teacher_id" style = "display:none"><?php echo $_SESSION["email"]?></label>
+                    <label id="teacher_id" style="display:none">
+                        <?php echo $_SESSION["email"] ?>
+                    </label>
                     <div class="col">
                         <div class="form-group">
                             <label for="start">Start date</label>
@@ -94,31 +103,31 @@ try
                         </div>
                         <div class="form-group">
                             <label for="test-points">Total Points</label>
-                            <input type="number" class="form-control" id="test-points" name="test-points" min = "0" max = "100" required>
+                            <input type="number" class="form-control" id="test-points" name="test-points" min="0"
+                                max="100" required>
                         </div>
                         <h1>List of available questions to create a test</h1>
 
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>ID of question</th>
-                    <th>Name</th>
-                    <th>Include to the test</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php 
-                foreach($questions as $question)
-                {
-                    if (empty($question["test_id"]))
-                    echo "<tr><td>" . $question["id"] . "</td><td>" . $question["name"] . "</td><td><input type='checkbox' name = 'question' value = " . $question["id"] . "></tr>";
-                   
-                }
-                
-                ?>
-                </tbody>
-            </table>
-                        
+                        <table class="table table-striped table-bordered table-sm">
+                            <thead>
+                                <tr>
+                                    <th>ID of question</th>
+                                    <th>Name</th>
+                                    <th>Include to the test</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                foreach ($questions as $question) {
+                                    if (empty($question["test_id"]))
+                                        echo "<tr><td>" . $question["id"] . "</td><td>" . $question["name"] . "</td><td><input type='checkbox' name = 'question' value = " . $question["id"] . "></td></tr>";
+
+                                }
+
+                                ?>
+                            </tbody>
+                        </table>
+
                     </div>
                 </div>
             </div>

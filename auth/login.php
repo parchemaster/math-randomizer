@@ -76,6 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $row = $stmt_t->fetch();
                 $hashed_password = $row["password"];
                 if (password_verify($_POST['password'], $hashed_password)) {
+                    $_SESSION["id"] = $row['id'];
                     $_SESSION["loggedin"] = true;
                     $_SESSION["user_type"] = "teacher";
                     $_SESSION["email"] = $row['email'];
@@ -90,6 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $hashed_password = $row["password"];
                 if (password_verify($_POST['password'], $hashed_password)) {
                     $_SESSION["loggedin"] = true;
+                    $_SESSION["id"] = $row['id'];
                     $_SESSION["user_type"] = "student";
                     $_SESSION["email"] = $row['email'];
                     $_SESSION["fullname"] = $row['full_name'];
