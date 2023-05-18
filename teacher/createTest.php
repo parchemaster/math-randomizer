@@ -22,8 +22,21 @@ try {
     $query_questions = "SELECT * FROM questions";
     $stmt = $db->query($query_questions);
     $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    unset($stmt);
 
+    require_once '../QuestionsController.php';
+    $QC = new QuestionsController();
+    $teacher_email = $_SESSION['email'];
+    $teacher_id = $QC->getTeacherId($teacher_email);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $array = json_decode($_POST['name']);
+        $array2 = json_decode($_POST['start']);
+        $array3 = json_decode($_POST['end']);
+        $array4 = json_decode($_POST['points']);
+        $array5 = json_decode($_POST['values']);
+        $test_id = $QC->createTest($teacher_id, $array, $array2, $array3, $array4);
+        $QC->updateQuestionWithTestId($array5, $test_id);
+
+    }
 
 } catch (PDOException $e) {
     echo $e->getMessage();

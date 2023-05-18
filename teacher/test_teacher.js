@@ -24,7 +24,7 @@ window.onload = function () {
 
             }
         }
-        $.post('testHandler.php', {
+        $.post('createTest.php', {
             teacher_id: JSON.stringify(teacher_id), name: JSON.stringify(name), start: JSON.stringify(start),
             end: JSON.stringify(end), points: JSON.stringify(points),
             values: JSON.stringify(values)

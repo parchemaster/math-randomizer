@@ -24,6 +24,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         </script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
         <script src="https://cdn.jsdelivr.net/npm/i18next@21.6.10/i18next.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@1.3.2/i18nextHttpBackend.min.js"></script>
@@ -51,14 +52,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <a class="nav-link" href="createTest.php" data-i18n="Create_Test"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="assignTestToStudent.php" data-i18n="Assign_test">Assign test to a
-                        student</a>
+                    <a class="nav-link" href="assignTestToStudent.php" data-i18n="Assign_test"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="theGuide.php" data-i18n="How_to_use_Teacher">How to use Teacher page</a>
+                    <a class="nav-link active" href="theGuide.php" data-i18n="How_to_use_Teacher"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../auth/logout.php" data-i18n="Logout_label">Logout</a>
+                    <a class="nav-link" href="../auth/logout.php" data-i18n="Logout_label"></a>
                 </li>
                 <li class="nav-item">
                     <select name="language" id="languageSwitcher"></select>
@@ -69,8 +69,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
     <div class="d-flex justify-content-center">
         <div class="d-flex" style="width: 50%; margin-top: 20px;">
-            <div class="container">
-                <form method="post">
+            <div class="container" id="container">
+<!--                <form method="post">-->
 
                     <h3 data-i18n="Available_features"></h3>
                     <br>
@@ -95,8 +95,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </ol>
 
                     <input type="text" name="name" class="form-control" id="InputName" style="display:none">
-                    <button type="submit" class="btn btn-primary" data-i18n="Export_to_PDF"></button>
-                </form>
+                    <button type="submit" class="btn btn-primary" data-i18n="Export_to_PDF" onclick="save_pdf()"></button>
+<!--                </form>-->
 
 
             </div>
@@ -105,24 +105,25 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 
     </body>
+    <script src="theGuide.js"></script>
 
     </html>
 <?php
-require_once('../pdf/pdf.php');
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (!empty($_POST)) {
-        $pdf = new Pdf();
-
-        $file_name = 'Test_Results.pdf';
-
-        $html = file_get_contents("theGuide.php");
-        $pdf->loadHtml($html);
-
-        $pdf->render();
-        ob_end_clean();
-        $pdf->stream($file_name, array("Attachment" => false));
-    }
-}
-exit(0);
-?>
+//require_once('../pdf/pdf.php');
+//
+//if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//    if (!empty($_POST)) {
+//        $pdf = new Pdf();
+//
+//        $file_name = 'Test_Results.pdf';
+//
+//        $html = file_get_contents("theGuide.php");
+//        $pdf->loadHtml($html);
+//
+//        $pdf->render();
+//        ob_end_clean();
+//        $pdf->stream($file_name, array("Attachment" => false));
+//    }
+//}
+//exit(0);
+//?>
