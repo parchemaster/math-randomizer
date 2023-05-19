@@ -82,31 +82,31 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
     <div class="d-flex justify-content-center">
         <div class="d-flex" style="width: 50%; margin-top: 20px;">
-            <div class="container" id="container">
+            <div class="container">
                 <!--                <form method="post">-->
-
-                <h3 data-i18n="Available_features"></h3>
-                <br>
-                <ol>
-                    <li>
-                        <strong data-i18n="Create_a_question"></strong>
-                        <p data-i18n="feature1"></p>
-                    </li>
-                    <li>
-                        <strong data-i18n="Create_a_test"></strong>
-                        <p data-i18n="feature2"></p>
-                    </li>
-                    <li>
-                        <strong data-i18n="Assign_test_to_a_student"></strong>
-                        <p data-i18n="feature3"></p>
-                    </li>
-                    <li>
-                        <strong data-i18n="Filter_and_export_to_CSV"></strong>
-                        <p data-i18n="feature4"></p>
-                        <p data-i18n="To_export_table"></p>
-                    </li>
-                </ol>
-
+                <div id="container">
+                    <h3 data-i18n="Available_features"></h3>
+                    <br>
+                    <ol>
+                        <li>
+                            <strong data-i18n="Create_a_question"></strong>
+                            <p data-i18n="feature1"></p>
+                        </li>
+                        <li>
+                            <strong data-i18n="Create_a_test"></strong>
+                            <p data-i18n="feature2"></p>
+                        </li>
+                        <li>
+                            <strong data-i18n="Assign_test_to_a_student"></strong>
+                            <p data-i18n="feature3"></p>
+                        </li>
+                        <li>
+                            <strong data-i18n="Filter_and_export_to_CSV"></strong>
+                            <p data-i18n="feature4"></p>
+                            <p data-i18n="To_export_table"></p>
+                        </li>
+                    </ol>
+                </div>
                 <input type="text" name="name" class="form-control" id="InputName" style="display:none">
                 <button type="submit" class="btn btn-primary" data-i18n="Export_to_PDF" onclick="save_pdf()"></button>
                 <!--                </form>-->

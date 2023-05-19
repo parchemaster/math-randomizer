@@ -218,8 +218,23 @@ $(function () {
                         "Create_a_test": "Vytvoriť test",
                         "Assign_test_to_a_student": "Priradiť test študentovi",
                         "Filter_and_export_to_CSV": "Filtrovať a exportovať tabuľku so študentmi do formátu CSV",
-                        "To_export_table": "Pre export tabuľky vo formáte CSV: kliknite na \"Exportovať do CSV\" a stiahnete si tabuľku vo formáte CSV."
+                        "To_export_table": "Pre export tabuľky vo formáte CSV: kliknite na \"Exportovať do CSV\" a stiahnete si tabuľku vo formáte CSV.",
 
+
+                        "Assign_this_test_to_a_student": "Priradiť tento test študentovi?",
+                        "Guide": "Sprievodca",
+                        "Tests": "Testy",
+                        "Students_page": "Stránka so študentmi",
+                        "test_page": "Stránka testu",
+                        "get_started": "Začať",
+                        "answer": "Odpoveď",
+                        "Result": "Výsledok",
+                        "Points": "Body",
+                        "Example_number": "Číslo príkladu",
+                        "Question_ID": "ID otázky",
+                        "Student": "Študent: ",
+                        "Next_question": "Ďalšia otázka",
+                        "finish_test": "Ukončiť test"
                         //---------------------------------------------------//
 
                     }
