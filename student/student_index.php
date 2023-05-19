@@ -92,24 +92,24 @@ try {
         <button onclick="">submit task</button>
     </div>
 </div>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
     <a class="navbar-brand" href="#">Hello, <?php echo $_SESSION["fullname"] ?></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse" id="navbarNav">
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="../auth/logout.php">Logout</a>
-            </li>
-            <li class="nav-item">
-                <select name="language" id="languageSwitcher"></select>
-            </li>
+          <li class="nav-item">
+          <a class="nav-link" href="../auth/logout.php">Logout</a>
+          </li>
+          <li class="nav-item">
+          <select name="language" id="languageSwitcher"></select>
+          </li>
         </ul>
+      </div>
     </div>
-</nav>
+  </nav>
 
 <div class="d-flex justify-content-center">
     <div class="d-flex justify-content-center" style="width: 700px; margin-top: 50px;">
