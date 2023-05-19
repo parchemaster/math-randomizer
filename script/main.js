@@ -36,15 +36,15 @@ window.MathJax = {
 var quations = []
 var section;
 var startTest=false;
+var globalId;
 function getRandomLatexFile() {
     try {
-
         var urlParams = new URLSearchParams(window.location.search);
         var id = urlParams.get('id');
+        globalId=id;
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                // console.log(this.responseText)
                 quations = quations.concat(this.responseText)
                 var button = document.querySelector('button[type="button"][onclick="getRandomLatexFile()"]');
                 activateButton(quations, button)
@@ -89,7 +89,7 @@ function finishTestPHP() {
 function activateButton(quations, button) {
     if(startTest){
         console.log("tut");
-        checkResult(section);
+        checkResult(section,globalId);
     }
     if (quations.length > 0) {
         quation = quations.pop()
@@ -109,15 +109,15 @@ function activateButton(quations, button) {
 var questionIndex = 0;
 var myFrame;
 var mathDiv;
+var randomNumber;
 
 function parseSections(latexCode2) {
     startTest=true;
     var object = JSON.parse(latexCode2);
-    console.log(object)
-    latexCode = object[questionIndex]["question"]
-    if( questionIndex < object.length) {
-        questionIndex ++
-    }
+    latexCode = object["question"]
+    // if( questionIndex < object.length) {
+    //     questionIndex ++
+    // }
     const taskRegex = /\\begin{task}([\s\S]*?)\\end{task}/g;
     const solutionRegex = /\\begin{solution}([\s\S]*?)\\end{solution}/g;
     const regexSection = /\\section\*{(\w+)}/g;
@@ -127,9 +127,11 @@ function parseSections(latexCode2) {
 
 
     // Select a random task match
-    const randomNumber = Math.floor(Math.random() * taskMatches.length)
+    randomNumber = Math.floor(Math.random() * taskMatches.length)
     const randomTaskMatch = taskMatches[randomNumber];
     section = sectionMatches[randomNumber];
+    section = section[1].replace(/\s/g, '');
+    console.log(section);
     // Display the random task match
     const pLatex = document.querySelector("#randomLatex");
 

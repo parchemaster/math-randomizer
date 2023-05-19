@@ -1,14 +1,16 @@
 
  
 
-function checkResult(sectionId) {
+function checkResult(sectionId,id) {
     console.log(mathDiv);
+    console.log(sectionId);
     $.ajax({
         type: 'POST',
         url: "../server/mathResult.php",
         data: {
-            section: sectionId[1],
-            result: parseLatex(mathDiv.textContent)
+            number: randomNumber,
+            result: parseLatex(mathDiv.textContent),
+            id:id
         },
         success: function (msg) {
             //rightAnswer=parseLatex(msg);

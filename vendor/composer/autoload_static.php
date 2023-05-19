@@ -6,77 +6,22 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitf12274b169a4ff3137dfe73bb14c0e94
 {
-    public static $files = array (
-        'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
-        '56823cacd97af379eceaf82ad00b928f' => __DIR__ . '/..' . '/phpseclib/bcmath_compat/lib/bcmath.php',
-    );
-
     public static $prefixLengthsPsr4 = array (
-        'p' => 
-        array (
-            'phpseclib3\\' => 11,
-        ),
-        'b' => 
-        array (
-            'bcmath_compat\\' => 14,
-        ),
-        'W' => 
-        array (
-            'Webit\\Util\\EvalMath\\' => 20,
-            'WaughJ\\MathParser\\' => 18,
-        ),
-        'P' => 
-        array (
-            'ParagonIE\\ConstantTime\\' => 23,
-        ),
         'M' => 
         array (
-            'Moontoast\\Math\\Exception\\' => 25,
-            'Moontoast\\Math\\' => 15,
             'MathPHP\\' => 8,
-        ),
-        'F' => 
-        array (
-            'Fubhy\\Math\\' => 11,
+            'Matex\\' => 6,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'phpseclib3\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
-        ),
-        'bcmath_compat\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/phpseclib/bcmath_compat/src',
-        ),
-        'Webit\\Util\\EvalMath\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/webit/eval-math/src',
-        ),
-        'WaughJ\\MathParser\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/waughj/math-parser/src',
-        ),
-        'ParagonIE\\ConstantTime\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src',
-        ),
-        'Moontoast\\Math\\Exception\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/moontoast/math/src/Moontoast/Math/Exception',
-        ),
-        'Moontoast\\Math\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/moontoast/math/src/Moontoast/Math',
-        ),
         'MathPHP\\' => 
         array (
             0 => __DIR__ . '/..' . '/markrogoyski/math-php/src',
         ),
-        'Fubhy\\Math\\' => 
+        'Matex\\' => 
         array (
-            0 => __DIR__ . '/..' . '/fubhy/math-php/src',
+            0 => __DIR__ . '/..' . '/madorin/matex/src',
         ),
     );
 
