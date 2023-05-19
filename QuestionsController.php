@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require_once ("database/Database.php");
 
 class QuestionsController
@@ -61,8 +65,6 @@ class QuestionsController
         $stmt->bindParam(':question', $question, PDO::PARAM_STR);
         $stmt->bindParam(':name', $name, PDO::PARAM_STR);
         $stmt->execute();
-
-        
         return (int)$this->connection->lastInsertId();
         
     }
@@ -129,8 +131,13 @@ class QuestionsController
         unset($stmt);
     }
 
-
-
-
-   
+    private function createAnswer($question_id, $answer)
+    {
+        $stmt = $this->connection->prepare('insert into questions (question_id, answer) value (?, ?)');
+        $stmt->bindParam(':question_id', $question_id);
+        $stmt->bindParam(':answer', $answer);
+        $stmt->execute();
+        unset($stmt);
+        return $this->connection->lastInsertId();
+    }
 }
