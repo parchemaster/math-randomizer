@@ -62,16 +62,23 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
+<<<<<<< HEAD
     <a class="navbar-brand" href="student_index.php">Hello, <?php echo $_SESSION["fullname"] ?></a>
+=======
+    <a class="navbar-brand" href="#">Hello, <?php echo $_SESSION["fullname"] ?></a>
+>>>>>>> c25aaafbe7b1af0f287629b068bf5c532fea254e
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
+<<<<<<< HEAD
           <a class="nav-link" href="../student/theGuide.php">Guide</a>
           </li>
           <li class="nav-item">
+=======
+>>>>>>> c25aaafbe7b1af0f287629b068bf5c532fea254e
           <a class="nav-link" href="../auth/logout.php">Logout</a>
           </li>
           <li class="nav-item">

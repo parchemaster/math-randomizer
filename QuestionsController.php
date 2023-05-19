@@ -140,6 +140,7 @@ class QuestionsController
         unset($stmt);
         return $this->connection->lastInsertId();
     }
+<<<<<<< HEAD
 
     function latexParserToDatabase($file,$question_id){
         //parse sections
@@ -221,4 +222,6 @@ class QuestionsController
 
 
    
+=======
+>>>>>>> c25aaafbe7b1af0f287629b068bf5c532fea254e
 }

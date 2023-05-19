@@ -108,7 +108,10 @@ try {
         <button onclick="">submit task</button>
     </div>
 </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> c25aaafbe7b1af0f287629b068bf5c532fea254e
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
     <a class="navbar-brand" href="#">Hello, <?php echo $_SESSION["fullname"] ?></a>
@@ -118,9 +121,12 @@ try {
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
+<<<<<<< HEAD
           <a class="nav-link" href="theGuide.php">Guide</a>
           </li>
           <li class="nav-item">
+=======
+>>>>>>> c25aaafbe7b1af0f287629b068bf5c532fea254e
           <a class="nav-link" href="../auth/logout.php">Logout</a>
           </li>
           <li class="nav-item">

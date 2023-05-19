@@ -4,7 +4,6 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require_once '../config.php';
 
-
 class Database {
 
     private $conn;
@@ -17,7 +16,6 @@ class Database {
         $this->conn = null;
         try
         {
-            
             $this->conn = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
             $this->conn->exec("set names utf8");
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

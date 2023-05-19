@@ -37,7 +37,11 @@ error_reporting(E_ALL);
 
   function latexParserToDatabase($file,$db,$id){
     //parse sections
+<<<<<<< HEAD
     $sql = "INSERT INTO examples ('example_number',task,solution,solution_clear,question_id) VALUES (?,?,?,?,?)";
+=======
+    $sql = "INSERT INTO examples ('example_number,task,solution,solution_clear,question_id) VALUES (?,?,?,?,?)";
+>>>>>>> c25aaafbe7b1af0f287629b068bf5c532fea254e
     $pattern = '/section[*][{](.*?)(nd[{]solution){1}/s';
     preg_match_all($pattern, $file, $sections);
     foreach ($sections[0] as $match) {
