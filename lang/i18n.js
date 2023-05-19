@@ -90,10 +90,22 @@ $(function () {
                         "Export_to_PDF": "Export to PDF",
                         "Available_features": "Available features and how to use them:",
                         "Create_a_question": "Create a question",
+
                         "feature1": "How: open page \"Create Question\", set name of the question, load LaTeX file, click on \"Submit\". Question will be created. Add image, if question works with image, to directory latex/zadanie99/images.",
                         "feature2": "How: open page \"Create Test\", set start date of test, set deadline for this test, set name of the test, set total points for this test, choose all questions you want to assign for this test, click on \"Submit\". Test will be created",
                         "feature3": "How: open page \"Assign test to a student\", click on name of the student you want to assign a test, on the next page select tests you want to assign, click on \"Submit\". Now student will see assigned tests for them.",
                         "feature4": "How: open teacher home page, then you can filter students by all available categories.",
+
+                        "Select_test": "Create a question",
+                        "Start_test": "Start test",
+                        "Submit_result": "Submitting result ",
+                        "Finish_test": "Finishing test",
+
+                        "student1": "On the main page, the student can see the available test,\n the student can choose any of them",
+                        "student2": "On the test page start test by pressing 'Get Started'",
+                        "student3": "After the test was started, you can see the expression on the top and\n the field where you can write down your solution. When you wrote\n down your solution, press 'Next question'.",
+                        "student4": "After submitting all questions you can finish the test\n by clicking 'Finish test'",
+
                         "Create_a_test": "Create a test",
                         "Assign_test_to_a_student": "Assign test to a student",
                         "Filter_and_export_to_CSV": "Filter and export to CSV table with students.",
@@ -176,6 +188,17 @@ $(function () {
                         "feature2": "Ako: otvorte stránku \"Vytvoriť test\", nastavte dátum začiatku testu, nastavte termín, zadajte názov testu, nastavte celkové body pre tento test, vyberte všetky otázky, ktoré chcete priradiť k tomuto testu, kliknite na \"Odoslať\". Test bude vytvorený",
                         "feature3": "Ako: otvorte stránku \"Priradiť test študentovi\", kliknite na meno študenta, ktorému chcete priradiť test, na ďalšej stránke vyberte testy, ktoré chcete priradiť, kliknite na \"Odoslať\". Študent uvidí priradené testy",
                         "feature4": "Ako: otvorte domovskú stránku učiteľa, potom môžete filtrovať študentov podľa všetkých dostupných kategórií",
+
+                        "Select_test": "Návod ako používať randomizér",
+                        "Start_test": "Spustiť test",
+                        "Submit_result": "Odovzdáva sa výsledok",
+                        "Finish_test": "Dokončovací test",
+
+                        "student1": "Na hlavnej stránke študent vidí dostupný test,\n študent si môže vybrať ktorýkoľvek z nich",
+                        "student2": "Na testovacej stránke spustite test stlačením tlačidla „Začať“",
+                        "student3": "Po spustení testu uvidíte výraz v hornej časti a\n pole, do ktorého si môžete zapísať svoje riešenie. Keď zapíšete\n svoje riešenie, stlačte 'Ďalšia otázka'.",
+                        "student4": "Po odoslaní všetkých otázok môžete test ukončiť\n kliknutím na „Dokončiť test“",
+
                         "Create_a_test": "Vytvoriť test",
                         "Assign_test_to_a_student": "Priradiť test študentovi",
                         "Filter_and_export_to_CSV": "Filtrovať a exportovať tabuľku so študentmi do formátu CSV",

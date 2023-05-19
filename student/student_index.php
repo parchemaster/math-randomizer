@@ -40,12 +40,28 @@ try {
     // $studentInfo_results = $studentInfo_stmt->fetchAll(PDO::FETCH_ASSOC);
     $studentInfo_results = $studentInfo_stmt->fetch(PDO::FETCH_ASSOC);
     $passed_testsIds = [];
-    if ($studentInfo_results["passed_tests"] !== NULL) {
-        $passed_testsId = explode(",", $studentInfo_results["passed_tests"]);
-        foreach ($passed_testsId as $number) {
-            $passed_testsIds[] = $number;
+    $assigned_testsIds = [];
+    if ($studentInfo_results !== false && $studentInfo_results !== null && $studentInfo_results !== []) {
+
+        if ($studentInfo_results["passed_tests"] !== NULL) {
+            $passed_testsId = explode(",", $studentInfo_results["passed_tests"]);
+            foreach ($passed_testsId as $number) {
+                $passed_testsIds[] = $number;
+            }
+        }
+
+
+        if ($studentInfo_results["assigned_tests"] !== NULL) {
+            $assigned_tests = json_decode($studentInfo_results["assigned_tests"], true);
+            $assigned_tests = json_decode($assigned_tests, true);
+            $assigned_testsIds = array();
+        
+            foreach ($assigned_tests as $number) {
+                $assigned_testsIds[] = $number;
+            }
         }
     }
+
 
 } catch (PDOException $e) {
     echo $e->getMessage();
@@ -59,7 +75,7 @@ try {
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="student_styles.css">
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/pricing/">
+    <!-- <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/pricing/"> -->
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -93,23 +109,27 @@ try {
     </div>
 </div>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
     <a class="navbar-brand" href="#">Hello, <?php echo $_SESSION["fullname"] ?></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse" id="navbarNav">
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="../auth/logout.php">Logout</a>
-            </li>
-            <li class="nav-item">
-                <select name="language" id="languageSwitcher"></select>
-            </li>
+          <li class="nav-item">
+          <a class="nav-link" href="theGuide.php">Guide</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="../auth/logout.php">Logout</a>
+          </li>
+          <li class="nav-item">
+          <select name="language" id="languageSwitcher"></select>
+          </li>
         </ul>
+      </div>
     </div>
-</nav>
+  </nav>
 
 <div class="d-flex justify-content-center">
     <div class="d-flex justify-content-center" style="width: 700px; margin-top: 50px;">
@@ -128,7 +148,8 @@ try {
                         <?php foreach ($test_results
 
                         as $result):
-                        if (!in_array($result['test_id'], $passed_testsIds)) {
+                        // var_dump($assigned_testsIds);
+                        if (in_array($result['test_id'], $assigned_testsIds) && !in_array($result['test_id'], $passed_testsIds)) {
                             echo '<td><a style="text-decoration: none;" href="../test/test.php?id=' . $result['test_id'] . '">' . $result['name'] . '</a></td>';
                         }
                         ?>

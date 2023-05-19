@@ -35,18 +35,22 @@ window.MathJax = {
 // }
 var quations = []
 var section;
-var startTest=false;
+var startTest = false;
+var globalId;
 function getRandomLatexFile() {
     try {
-
         var urlParams = new URLSearchParams(window.location.search);
         var id = urlParams.get('id');
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                // console.log(this.responseText)
-                quations = quations.concat(this.responseText)
+                // quations = quations.concat(this.responseText)
                 var button = document.querySelector('button[type="button"][onclick="getRandomLatexFile()"]');
+                var quations = JSON.parse(this.responseText);
+                // console.log(quations[0]);
+
+                // Access the second object
+                // console.log(quations[1]);
                 activateButton(quations, button)
                 if (button) {
                     button.onclick = function () {
@@ -56,7 +60,7 @@ function getRandomLatexFile() {
                     button.className = "w-100 btn btn-lg btn btn-primary"
                 }
             }
-        };     
+        };
         var url = "../latexHandler.php?id=" + id;
         xhttp.open("GET", url, true);
         xhttp.send();
@@ -77,7 +81,7 @@ function finishTestPHP() {
                 console.log(this.responseText)
                 window.location.href = "../student/student_index.php";
             }
-        };          
+        };
         var url = "../handler/studentInfoHandler.php?testId=" + id;
         xhttp.open("PUT", url, true);
         xhttp.send();
@@ -87,12 +91,12 @@ function finishTestPHP() {
 }
 
 function activateButton(quations, button) {
-    if(startTest){
-        console.log("tut");
-        checkResult(section);
+    if (startTest) {
+        checkResult(section, globalId);
     }
     if (quations.length > 0) {
         quation = quations.pop()
+        // console.log(quation)
         parseSections(quation)
     }
     else {
@@ -100,7 +104,7 @@ function activateButton(quations, button) {
         button.className = "w-100 btn btn-lg btn btn-warning"
         button.onclick = function () {
             console.log("test was finished")
-            startTest=false;
+            startTest = false;
             finishTestPHP()
         };
     }
@@ -109,15 +113,16 @@ function activateButton(quations, button) {
 var questionIndex = 0;
 var myFrame;
 var mathDiv;
+var randomNumber;
 
-function parseSections(latexCode2) {
-    startTest=true;
-    var object = JSON.parse(latexCode2);
-    console.log(object)
-    latexCode = object[questionIndex]["question"]
-    if( questionIndex < object.length) {
-        questionIndex ++
-    }
+function parseSections(object) {
+    startTest = true;
+    // var object = JSON.parse(latexCode2);
+    globalId=object['id'];
+    latexCode = object["question"];
+    // if (questionIndex < object.length) {
+    //     questionIndex++
+    // }
     const taskRegex = /\\begin{task}([\s\S]*?)\\end{task}/g;
     const solutionRegex = /\\begin{solution}([\s\S]*?)\\end{solution}/g;
     const regexSection = /\\section\*{(\w+)}/g;
@@ -127,9 +132,10 @@ function parseSections(latexCode2) {
 
 
     // Select a random task match
-    const randomNumber = Math.floor(Math.random() * taskMatches.length)
+    randomNumber = Math.floor(Math.random() * taskMatches.length)
     const randomTaskMatch = taskMatches[randomNumber];
     section = sectionMatches[randomNumber];
+    section = section[1].replace(/\s/g, '');
     // Display the random task match
     const pLatex = document.querySelector("#randomLatex");
 
@@ -142,11 +148,9 @@ function parseSections(latexCode2) {
     MathJax.typeset();
     if (imagePathMatch) {
         const imagePath = imagePathMatch[1];
-        console.log("Image path:", imagePath);
 
         // Create an img tag and set its src and style attributes
         const img = document.createElement("img");
-        console.log(imagePath)
         img.src = "../latex/" + imagePath;
         img.style.maxWidth = "100%";
         img.style.height = "auto";

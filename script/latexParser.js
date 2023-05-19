@@ -19,7 +19,7 @@ newExpr = newExpr.replace(/([0-9])([a-zA-Z])/gi, '$1*$2');
 newExpr = newExpr.replace(/([a-zA-Z])([0-9])/gi, '$1*$2');
 newExpr = newExpr.replace(/([\^=(-])([*])/gi, '$1');
 //newExpr = newExpr.replace(/\b[a-zA-Z]+\b/g,17.5);
-newExpr = newExpr.replace(/\b(?!pi|squar|(\be\b)|sin|cos|lim|log|tan|int)[a-zA-Z]+\b/g,17.5);
+newExpr = newExpr.replace(/\b(?!pi|squar|sin|cos|lim|log|tan|int)[a-zA-Z]+\b/g,17.5);
 newExpr = newExpr.replace(/["]/g,'');
 return newExpr;
 }

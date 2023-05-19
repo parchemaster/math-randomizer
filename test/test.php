@@ -25,16 +25,16 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 <head>
     <title>student</title>
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="student_styles.css">
+    <!-- <link rel="stylesheet" href="student_styles.css"> -->
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/pricing/">
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+ <!-- Bootstrap -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-    crossorigin="anonymous"></script>
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+            crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 
@@ -60,20 +60,27 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     </div>
 </div>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="../student/student_index.php">Hello, <?php echo $_SESSION["fullname"]?></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+    <a class="navbar-brand" href="student_index.php">Hello, <?php echo $_SESSION["fullname"] ?></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="../auth/logout.php">Logout</a>
-            </li>
+          <li class="nav-item">
+          <a class="nav-link" href="../student/theGuide.php">Guide</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="../auth/logout.php">Logout</a>
+          </li>
+          <li class="nav-item">
+          <select name="language" id="languageSwitcher"></select>
+          </li>
         </ul>
+      </div>
     </div>
-</nav>
+  </nav>
 
 <div class="d-flex justify-content-center">
     <div class="d-flex justify-content-center" style="width: 700px; margin-top: 50px;">
@@ -119,12 +126,11 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     style="position: absolute; display: none; width: 50px; height: 50px; z-index: 2147483647; border-style: none; background: transparent;"></iframe>
 </body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
 
-<script src="student.js"></script>
-<script>  myFrame = document.getElementById("latexFrame"); console.log(myFrame)
+<script src="../student/student.js"></script>
+<script>  myFrame = document.getElementById("latexFrame"); 
      myFrame.onload = function () {
         var frameContent = myFrame.contentDocument || myFrame.contentWindow.document;
         mathDiv = frameContent.getElementById('LatexOutput');
-        console.log('aaa');
     };
 </script>
 

@@ -26,7 +26,7 @@ class StudentInfoController
         // Assuming you have a database connection established and stored in the $connection variable
         
         // Prepare the update query
-        $query = "UPDATE students_info SET passed_tests = CONCAT(passed_tests, :testId, ',') WHERE student_id = :studentID";
+        $query = "UPDATE students_info SET passed_tests = CONCAT(IFNULL(passed_tests, ''), :testId, ',') WHERE student_id = :studentID";
         $stmt = $this->conn->prepare($query);
         
         // Bind the parameters

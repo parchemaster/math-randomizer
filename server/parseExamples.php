@@ -6,15 +6,15 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Check if the user is logged in, if no then redirect him to login
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("Location: ../auth/login.php");
-    exit;
-} else if (isset($_SESSION["user_type"]) && $_SESSION["user_type"] == "student") {
-    header("Location: ../student/student_index.php");
-    exit;
-}
+// if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+//     header("Location: ../auth/login.php");
+//     exit;
+// } else if (isset($_SESSION["user_type"]) && $_SESSION["user_type"] == "student") {
+//     header("Location: ../student/student_index.php");
+//     exit;
+// }
 
- require_once('config.php');     
+ require_once('../config.php');     
  try{
      $db = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -24,22 +24,24 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
      echo 'eaaarror';
  }
 
-  $file_contents = file_get_contents('latex/odozva01pr.tex');
-  latexParserToDatabase($file_contents,$db);
-  $file_contents = file_get_contents('latex/odozva02pr.tex');
-  latexParserToDatabase($file_contents,$db);
-  $file_contents = file_get_contents('latex/blokovka01pr.tex');
-  latexParserToDatabase($file_contents,$db);
-  $file_contents = file_get_contents('latex/blokovka02pr.tex');
-  latexParserToDatabase($file_contents,$db);
+  $file_contents = file_get_contents('../latex/odozva01pr.tex');
+  latexParserToDatabase($file_contents,$db,0);
+  // $file_contents = file_get_contents('latex/odozva02pr.tex');
+  // latexParserToDatabase($file_contents,$db);
+  // $file_contents = file_get_contents('latex/blokovka01pr.tex');
+  // latexParserToDatabase($file_contents,$db);
+  // $file_contents = file_get_contents('latex/blokovka02pr.tex');
+  // latexParserToDatabase($file_contents,$db);
 
 
-  function latexParserToDatabase($file,$db){
+
+  function latexParserToDatabase($file,$db,$id){
     //parse sections
-    $sql = "INSERT INTO examples (section,task,solution,solution_clear) VALUES (?,?,?,?)";
+    $sql = "INSERT INTO examples ('example_number',task,solution,solution_clear,question_id) VALUES (?,?,?,?,?)";
     $pattern = '/section[*][{](.*?)(nd[{]solution){1}/s';
     preg_match_all($pattern, $file, $sections);
     foreach ($sections[0] as $match) {
+        $i=0;
       //parse sections numbers
       $pattern = '/((?<=section[*][{])(.*?)(?=})){1}/';
       preg_match($pattern, $match, $temp);
@@ -56,10 +58,10 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
       $solutionsClear=latexMathToTxtMath($temp[0]);
       $stmt = $db->prepare($sql);
       if(gettype($solutionsClear)=='array'){
-        $stmt->execute([$sectionNumbers,$tasks,$solutions,$solutionsClear[0]]);
+        $stmt->execute([$i,$sectionNumbers,$tasks,$solutions,$solutionsClear[0],$id]);
       }
       else{
-        $stmt->execute([$sectionNumbers,$tasks,$solutions,$solutionsClear]);
+        $stmt->execute([$i,$sectionNumbers,$tasks,$solutions,$solutionsClear,$id]);
       }
       // $stmt = $db->prepare($sql);
       // $stmt->execute([$sectionNumbers,$tasks,$solutions,$solutionsClear]);

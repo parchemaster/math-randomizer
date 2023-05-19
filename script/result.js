@@ -1,18 +1,22 @@
 
- 
 
-function checkResult(sectionId) {
-    console.log(mathDiv);
+
+function checkResult(sectionId, id) {
     $.ajax({
         type: 'POST',
         url: "../server/mathResult.php",
         data: {
-            section: sectionId[1],
-            result: parseLatex(mathDiv.textContent)
+            number: randomNumber,
+            result: parseLatex(mathDiv.textContent),
+            id: id,
+            rawResult:mathDiv.textContent
         },
         success: function (msg) {
             //rightAnswer=parseLatex(msg);
-            //console.log(rightAnswer);
+            // console.log(rightAnswer);
+           // console.log(parseLatex(mathDiv.textContent) + "\n")
+            // var response = JSON.parse(msg);
+            // console.log(response.solution_clear);
             console.log(msg);
         },
         error: function (jqXHR, textStatus, errorThrown) {

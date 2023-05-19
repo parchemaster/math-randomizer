@@ -10,8 +10,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("Location: ../auth/login.php");
     exit();
 } else if (isset($_SESSION["user_type"]) && $_SESSION["user_type"] == "student") {
-    header("Location: ../student/student_index.php");
-    exit();
+    // header("Location: ../student/student_index.php");
+    // exit();
 }
 
 ?>
@@ -23,13 +23,14 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js">
         </script>
         <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-           <!-- Bootstrap -->
-           <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
             crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
         <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
@@ -48,30 +49,17 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="teacher_index.php">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="createQuestion.php">Create Question</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="createTest.php">Create Test</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="assignTestToStudent.php">Assign test to a student</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="theGuide.php">How to use Teacher page</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../auth/logout.php">Logout</a>
-                </li>
-                </li>
-                <li class="nav-item">
-                <select name="language" id="languageSwitcher"></select>
-            </li>
-            </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+          <a class="nav-link" href="theGuide.php">Guide</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="../auth/logout.php">Logout</a>
+          </li>
+          <li class="nav-item">
+          <select name="language" id="languageSwitcher"></select>
+          </li>
+        </ul>
       </div>
     </div>
   </nav>
@@ -85,21 +73,20 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <br>
                     <ol>
                         <li>
-                            <strong data-i18n="Create_a_question"></strong>
-                            <p data-i18n="feature1"></p>
+                            <strong data-i18n="Select_test"></strong>
+                            <p data-i18n="student1"></p>
                         </li>
                         <li>
-                            <strong data-i18n="Create_a_test"></strong>
-                            <p data-i18n="feature2"></p>
+                            <strong data-i18n="Start_test"></strong>
+                            <p data-i18n="student2"></p>
                         </li>
                         <li>
-                            <strong data-i18n="Assign_test_to_a_student"></strong>
-                            <p data-i18n="feature3"></p>
+                            <strong data-i18n="Submit_result"></strong>
+                            <p data-i18n="student3"></p>
                         </li>
                         <li>
-                            <strong data-i18n="Filter_and_export_to_CSV"></strong>
-                            <p data-i18n="feature4"></p>
-                            <p data-i18n="To_export_table"></p>
+                            <strong data-i18n="Finish_test"></strong>
+                            <p data-i18n="student4"></p>
                         </li>
                     </ol>
 
