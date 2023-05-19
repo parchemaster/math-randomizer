@@ -21,7 +21,6 @@ catch(PDOException $e){
 }
 
 if($_SERVER['REQUEST_METHOD']=='POST') {
-<<<<<<< HEAD
   echo json_encode(isEqual($_POST['id'],$_POST['number'],$_POST['result'],$db,$_POST['rawResult']));
  die();
 }
@@ -29,23 +28,12 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
 function isEqual($id,$number,$try,$db,$raw){
   //  echo $number."number";
   //  echo $id."id";
-=======
-  echo json_encode(isEqual($_POST['id'],$_POST['number'],$_POST['result'],$db));
- die();
-}
-
-function isEqual($id,$number,$try,$db){
-   echo $number."number";
-   echo $id."id";
-
->>>>>>> c25aaafbe7b1af0f287629b068bf5c532fea254e
    $evaluator = new \Matex\Evaluator();
    $connection = (new Database())->getConnection();
    $answerInfo=getAnswer($number,$id,$db);
   $expression1 = $answerInfo[1];
     var_dump($expression1);
    $points= $answerInfo[0];
-<<<<<<< HEAD
    //var_dump($points);
    $expression2 = $try;
     // $countLeft = substr_count($expression1, '(');
@@ -65,49 +53,18 @@ function isEqual($id,$number,$try,$db){
    }
    updatePoints($pointi,$_SESSION['id'],$connection);
    createAnswer($number,$raw,$result,$_SESSION['id'],$pointi,$connection,$answerInfo[2]);
-=======
-   var_dump($points);
-   $expression2 = $try;
-    $countLeft = substr_count($expression1, '(');
-    $countRight = substr_count($expression1, ')');
-    echo($countLeft);
-    echo($countRight);
-    $expression1 = str_replace(array(" ", "\n", "\r","\s"), "", $expression1);
-    //$expression1 = str_replace(array("^"), "**", $expression1);
-    var_dump($expression1);
-    $temp= $evaluator->execute($expression1);
-     //$temp=$eval->calculate("1+1");
-    $temp2=$evaluator->execute($expression2);
-   $result=0;
-   $pointi=0;
-   if(round($temp,4)==round($temp2,4)){
-    $result=1;
-    $pointi=$points;
-    updatePoints($pointi,$_SESSION['id'],$connection);
-   }
-   createAnswer($number,$try,$result,$_SESSION['id'],$pointi,$connection,$answerInfo[2]);
->>>>>>> c25aaafbe7b1af0f287629b068bf5c532fea254e
    return $result;
 }
 
 function createAnswer($number, $answ, $result, $id,$point,$connection,$questId)
 {
-<<<<<<< HEAD
     $stmt = $connection->prepare('INSERT INTO student_succes (example_number, answer, result, student_id, points,question_id) VALUES (:example_number, :answer, :result, :student_id, :points, :question_id)');
     $stmt->bindParam(':example_number', $number);
-=======
-    $stmt = $connection->prepare('INSERT INTO student_succes (example_number, answer, result, student_id, points,question_id) VALUES (:number, :answer, :result, :student_id, :points, :id)');
-    $stmt->bindParam(':number', $number);
->>>>>>> c25aaafbe7b1af0f287629b068bf5c532fea254e
     $stmt->bindParam(':answer', $answ);
     $stmt->bindParam(':result', $result);
     $stmt->bindParam(':student_id',$id);
     $stmt->bindParam(':points', $point);    
-<<<<<<< HEAD
     $stmt->bindParam(':question_id', $questId);    
-=======
-    $stmt->bindParam(':id', $questId);    
->>>>>>> c25aaafbe7b1af0f287629b068bf5c532fea254e
     $stmt->execute();   
     return (int)$connection->lastInsertId();
 }
@@ -127,7 +84,6 @@ function createAnswer($number, $answ, $result, $id,$point,$connection,$questId)
     // $stmt->bindParam(':id', $id);
     // $stmt->execute();
     // $answ = $stmt->fetch(PDO::FETCH_ASSOC);
-<<<<<<< HEAD
     $sql = "SELECT points FROM questions WHERE id = ".$id;
     $stmt = $db->query($sql); 
     $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -137,17 +93,6 @@ function createAnswer($number, $answ, $result, $id,$point,$connection,$questId)
     $stmt = $db->query($sql); 
     $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
     $resp=[$result1['points'],$result2['solution_clear'],$id];
-=======
-    $sql = "SELECT id, points FROM questions WHERE test_id = ".$id;
-    $stmt = $db->query($sql); 
-    $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
-
-
-    $sql = "SELECT solution_clear FROM examples WHERE example_number = ".$number." and question_id = ".$result1['id'];
-    $stmt = $db->query($sql); 
-    $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
-    $resp=[$result1['points'],$result2['solution_clear'],$result1['id']];
->>>>>>> c25aaafbe7b1af0f287629b068bf5c532fea254e
     return $resp;
 }
 

@@ -35,11 +35,7 @@ window.MathJax = {
 // }
 var quations = []
 var section;
-<<<<<<< HEAD
 var startTest = false;
-=======
-var startTest=false;
->>>>>>> c25aaafbe7b1af0f287629b068bf5c532fea254e
 var globalId;
 function getRandomLatexFile() {
     try {
@@ -49,11 +45,7 @@ function getRandomLatexFile() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-<<<<<<< HEAD
                 // quations = quations.concat(this.responseText)
-=======
-                quations = quations.concat(this.responseText)
->>>>>>> c25aaafbe7b1af0f287629b068bf5c532fea254e
                 var button = document.querySelector('button[type="button"][onclick="getRandomLatexFile()"]');
                 var quations = JSON.parse(this.responseText);
                 // console.log(quations[0]);
@@ -100,14 +92,8 @@ function finishTestPHP() {
 }
 
 function activateButton(quations, button) {
-<<<<<<< HEAD
     if (startTest) {
         checkResult(section, globalId);
-=======
-    if(startTest){
-        console.log("tut");
-        checkResult(section,globalId);
->>>>>>> c25aaafbe7b1af0f287629b068bf5c532fea254e
     }
     if (quations.length > 0) {
         quation = quations.pop()
@@ -130,7 +116,6 @@ var myFrame;
 var mathDiv;
 var randomNumber;
 
-<<<<<<< HEAD
 function parseSections(object) {
     startTest = true;
     // var object = JSON.parse(latexCode2);
@@ -138,14 +123,6 @@ function parseSections(object) {
     latexCode = object["question"];
     // if (questionIndex < object.length) {
     //     questionIndex++
-=======
-function parseSections(latexCode2) {
-    startTest=true;
-    var object = JSON.parse(latexCode2);
-    latexCode = object["question"]
-    // if( questionIndex < object.length) {
-    //     questionIndex ++
->>>>>>> c25aaafbe7b1af0f287629b068bf5c532fea254e
     // }
     const taskRegex = /\\begin{task}([\s\S]*?)\\end{task}/g;
     const solutionRegex = /\\begin{solution}([\s\S]*?)\\end{solution}/g;
@@ -160,10 +137,6 @@ function parseSections(latexCode2) {
     const randomTaskMatch = taskMatches[randomNumber];
     section = sectionMatches[randomNumber];
     section = section[1].replace(/\s/g, '');
-<<<<<<< HEAD
-=======
-    console.log(section);
->>>>>>> c25aaafbe7b1af0f287629b068bf5c532fea254e
     // Display the random task match
     const pLatex = document.querySelector("#randomLatex");
 

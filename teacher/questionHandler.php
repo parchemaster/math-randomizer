@@ -83,11 +83,7 @@ function latexMathToTxtMath($latex){
       $str = preg_replace('/(\w+)(\()/', '$1*$2', $str);
       $str = preg_replace('/([a-zA-Z]+)(\d)/', '$1*$2', $str);
       $str = preg_replace('/(\d)([a-zA-Z]+)/', '$1*$2', $str);
-<<<<<<< HEAD
       $exclude = array("pi", "squar","pi","sin","cos","log","tan","int","lim");
-=======
-      $exclude = array("pi", "e", "squar","pi","sin","cos","log","tan","int","lim");
->>>>>>> c25aaafbe7b1af0f287629b068bf5c532fea254e
       $replaced = preg_replace_callback('/\b\w+\b/', function($match) use ($exclude) {
           $word = strtolower($match[0]);
           if (in_array($word, $exclude)) {
