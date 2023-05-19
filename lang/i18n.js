@@ -91,6 +91,8 @@ $(function () {
                         "Available_features": "Available features and how to use them:",
                         "Create_a_question": "Create a question",
 
+
+                        // data-i18n=""
                         "feature1": "How: open page \"Create Question\", set name of the question, load LaTeX file, click on \"Submit\". Question will be created. Add image, if question works with image, to directory latex/zadanie99/images.",
                         "feature2": "How: open page \"Create Test\", set start date of test, set deadline for this test, set name of the test, set total points for this test, choose all questions you want to assign for this test, click on \"Submit\". Test will be created",
                         "feature3": "How: open page \"Assign test to a student\", click on name of the student you want to assign a test, on the next page select tests you want to assign, click on \"Submit\". Now student will see assigned tests for them.",
@@ -111,6 +113,20 @@ $(function () {
                         "Filter_and_export_to_CSV": "Filter and export to CSV table with students.",
                         "To_export_table": "To export table in a CSV format: click on \"Export to CSV\" and you will download table in a CSV format.",
 
+                        "Assign_this_test_to_a_student":"Assign this test to a student?",
+                        "Guide":"Guide",
+                        "Tests":"Tests",
+                        "Students_page":"Students page",
+                        "test_page":"Test page",
+                        "get_started":"Get started",
+                        "answer":"Answer",
+                        "Result":"Result",
+                        "Points":"Points",
+                        "Example_number":"Example number",
+                        "Question_ID":"Question ID",
+                        "Student":"Student: ",
+                        "Next_question":"Next question",
+                        "finish_test":"Finish test",
                         //---------------------------------------------------//
 
                     }
@@ -202,8 +218,23 @@ $(function () {
                         "Create_a_test": "Vytvoriť test",
                         "Assign_test_to_a_student": "Priradiť test študentovi",
                         "Filter_and_export_to_CSV": "Filtrovať a exportovať tabuľku so študentmi do formátu CSV",
-                        "To_export_table": "Pre export tabuľky vo formáte CSV: kliknite na \"Exportovať do CSV\" a stiahnete si tabuľku vo formáte CSV."
+                        "To_export_table": "Pre export tabuľky vo formáte CSV: kliknite na \"Exportovať do CSV\" a stiahnete si tabuľku vo formáte CSV.",
 
+
+                        "Assign_this_test_to_a_student": "Priradiť tento test študentovi?",
+                        "Guide": "Sprievodca",
+                        "Tests": "Testy",
+                        "Students_page": "Stránka so študentmi",
+                        "test_page": "Stránka testu",
+                        "get_started": "Začať",
+                        "answer": "Odpoveď",
+                        "Result": "Výsledok",
+                        "Points": "Body",
+                        "Example_number": "Číslo príkladu",
+                        "Question_ID": "ID otázky",
+                        "Student": "Študent: ",
+                        "Next_question": "Ďalšia otázka",
+                        "finish_test": "Ukončiť test"
                         //---------------------------------------------------//
 
                     }

@@ -49,37 +49,39 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-    <a class="navbar-brand" href="teacher_index.php">Hello, <?php echo $_SESSION["fullname"] ?></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+        <a class="navbar-brand" href="teacher_index.php"><span
+                    data-i18n="hello_label"></span><?php echo $_SESSION["fullname"] ?></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="teacher_index.php">Home</a>
+                    <a class="nav-link" href="teacher_index.php" data-i18n="home_label"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="createQuestion.php">Create Question</a>
+                    <a class="nav-link" href="createQuestion.php" data-i18n="Create_Question"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="createTest.php">Create Test</a>
+                    <a class="nav-link" href="createTest.php" data-i18n="Create_Test"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="assignTestToStudent.php">Assign test to a student</a>
+                    <a class="nav-link" href="assignTestToStudent.php" data-i18n="Assign_test"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="theGuide.php">How to use Teacher page</a>
+                    <a class="nav-link" href="theGuide.php" data-i18n="How_to_use_Teacher"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../auth/logout.php">Logout</a>
+                    <a class="nav-link" href="../auth/logout.php" data-i18n="Logout_label"></a>
                 </li>
                 <li class="nav-item">
                     <select name="language" id="languageSwitcher"></select>
                 </li>
             </ul>
-      </div>
+        </div>
     </div>
-  </nav>
+</nav>
 
 <div class="container py-5">
     <h1 data-i18n="Create_a_new_question"></h1>

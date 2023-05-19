@@ -57,7 +57,7 @@ function getRandomLatexFile() {
                     button.onclick = function () {
                         activateButton(quations, button)
                     };
-                    button.innerText = 'Next quation';
+                    button.innerText = '<span data-i18n="Next_question"></span>';
                     button.className = "w-100 btn btn-lg btn btn-primary"
                 }
             }
@@ -101,7 +101,7 @@ function activateButton(quations, button) {
         parseSections(quation)
     }
     else {
-        button.innerText = 'Finish test';
+        button.innerText = '<span data-i18n="finish_test"></span>';
         button.className = "w-100 btn btn-lg btn btn-warning"
         button.onclick = function () {
             console.log("test was finished")

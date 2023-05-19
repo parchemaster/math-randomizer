@@ -29,8 +29,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/pricing/">
 
- <!-- Bootstrap -->
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
@@ -43,8 +43,12 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
     </script>
 
-
-<script src="../script/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next@21.6.10/i18next.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@1.3.2/i18nextHttpBackend.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-i18next@1.2.1/jquery-i18next.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@6.1.3/i18nextBrowserLanguageDetector.min.js"></script>
+    <script src="../lang/i18n.js"></script>
+    <script src="../script/main.js"></script>
     <script src="../script/result.js"></script>
     <script src="../script/latexParser.js"></script>
 
@@ -62,73 +66,75 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-    <a class="navbar-brand" href="../student/student_index.php">Hello, <?php echo $_SESSION["fullname"] ?></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-          <a class="nav-link" href="../student/theGuide.php">Guide</a>
-          </li>
-          <li class="nav-item">
-          <a class="nav-link" href="../auth/logout.php">Logout</a>
-          </li>
-          <li class="nav-item">
-          <select name="language" id="languageSwitcher"></select>
-          </li>
-        </ul>
-      </div>
+        <a class="navbar-brand" href="../student/student_index.php"><span
+                    data-i18n="hello_label"></span><?php echo $_SESSION["fullname"] ?></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="theGuide.php" data-i18n="Guide"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../auth/logout.php" data-i18n="Logout_label"></a>
+                </li>
+                <li class="nav-item">
+                    <select name="language" id="languageSwitcher"></select>
+                </li>
+            </ul>
+        </div>
     </div>
-  </nav>
+</nav>
 
 <div class="d-flex justify-content-center">
     <div class="d-flex justify-content-center" style="width: 700px; margin-top: 50px;">
         <div class="container">
-            <h1>Test page</h1>
-            
+            <h1 data-i18n="test_page"></h1>
 
-           
-                <div class="card-body">
-                    <div id="tex">
+
+            <div class="card-body">
+                <div id="tex">
                     <p id="randomLatex">
                     </p>
-                    </div>
-
-                    <button type="button" onclick="getRandomLatexFile()" class="w-100 btn btn-lg btn-success">Get
-                    started</button>
-                    <div class="iframe-wrapper">
-                    <iframe id="latexFrame" src="../equation-editor/equation-editor.html"></iframe>
-                    </div>
                 </div>
+
+                <button type="button" onclick="getRandomLatexFile()" class="w-100 btn btn-lg btn-success"><span data-i18n="get_started"></span>
+                </button>
+                <div class="iframe-wrapper">
+                    <iframe id="latexFrame" src="../equation-editor/equation-editor.html"></iframe>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <style>
-      .iframe-wrapper {
+    .iframe-wrapper {
         position: relative;
         width: 100%;
         height: 0;
         padding-bottom: 56.25%;
-      }
+    }
 
-      .iframe-wrapper iframe {
+    .iframe-wrapper iframe {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-      }
-    </style>
+    }
+</style>
 
 <iframe id="nr-ext-rsicon"
-    style="position: absolute; display: none; width: 50px; height: 50px; z-index: 2147483647; border-style: none; background: transparent;"></iframe>
-</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
+        style="position: absolute; display: none; width: 50px; height: 50px; z-index: 2147483647; border-style: none; background: transparent;"></iframe>
+</body>
+<grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
 
 <script src="../student/student.js"></script>
-<script>  myFrame = document.getElementById("latexFrame"); 
-     myFrame.onload = function () {
+<script>  myFrame = document.getElementById("latexFrame");
+    myFrame.onload = function () {
         var frameContent = myFrame.contentDocument || myFrame.contentWindow.document;
         mathDiv = frameContent.getElementById('LatexOutput');
     };
